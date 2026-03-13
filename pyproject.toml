@@ -19,6 +19,8 @@ openhands-sdk = { workspace = true }
 openhands-tools = { workspace = true }
 openhands-workspace = { workspace = true }
 openhands-agent-server = { workspace = true }
+# Use forked litellm with Vertex AI Express mode support
+litellm = { git = "https://github.com/Ethara-Ai/litellm.git", branch = "main" }
 
 [dependency-groups]
 dev = [
