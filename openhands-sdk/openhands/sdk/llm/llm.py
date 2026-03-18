@@ -466,11 +466,13 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
             os.environ["AWS_REGION_NAME"] = self.aws_region_name
 
         # Metrics + Telemetry wiring
+        # Use canonical name when available so cost lookups work for
+        # proxied / aliased model strings (e.g. Bedrock ARN identifiers).
         if self._metrics is None:
-            self._metrics = Metrics(model_name=self.model)
+            self._metrics = Metrics(model_name=self._effective_model_name())
 
         self._telemetry = Telemetry(
-            model_name=self.model,
+            model_name=self._effective_model_name(),
             log_enabled=self.log_completions,
             log_dir=self.log_completions_folder if self.log_completions else None,
             input_cost_per_token=self.input_cost_per_token,
@@ -527,7 +529,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
             >>> print(f"Total cost: ${cost}")
         """
         if self._metrics is None:
-            self._metrics = Metrics(model_name=self.model)
+            self._metrics = Metrics(model_name=self._effective_model_name())
         return self._metrics
 
     @property
@@ -542,7 +544,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         """
         if self._telemetry is None:
             self._telemetry = Telemetry(
-                model_name=self.model,
+                model_name=self._effective_model_name(),
                 log_enabled=self.log_completions,
                 log_dir=self.log_completions_folder if self.log_completions else None,
                 input_cost_per_token=self.input_cost_per_token,
@@ -1076,7 +1078,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
     # =========================================================================
     # Capabilities, formatting, and info
     # =========================================================================
-    def _model_name_for_capabilities(self) -> str:
+    def _effective_model_name(self) -> str:
         """Return canonical name for capability lookups (e.g., vision support)."""
         return self.model_canonical_name or self.model
 
@@ -1084,7 +1086,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         self._model_info = get_litellm_model_info(
             secret_api_key=self.api_key,
             base_url=self.base_url,
-            model=self._model_name_for_capabilities(),
+            model=self._effective_model_name(),
         )
 
         # Context window and max_output_tokens
@@ -1182,7 +1184,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         # we can go with it, but we will need to keep an eye if model_info is correct for Vertex or other providers  # noqa: E501
         # remove when litellm is updated to fix https://github.com/BerriAI/litellm/issues/5608  # noqa: E501
         # Check both the full model name and the name after proxy prefix for vision support  # noqa: E501
-        model_for_caps = self._model_name_for_capabilities()
+        model_for_caps = self._effective_model_name()
         return (
             supports_vision(model_for_caps)
             or supports_vision(model_for_caps.split("/")[-1])
@@ -1206,14 +1208,14 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         # only Anthropic models need explicit caching breakpoints
         return (
             self.caching_prompt
-            and get_features(self._model_name_for_capabilities()).supports_prompt_cache
+            and get_features(self._effective_model_name()).supports_prompt_cache
         )
 
     def uses_responses_api(self) -> bool:
         """Whether this model uses the OpenAI Responses API path."""
 
         # by default, uses = supports
-        return get_features(self._model_name_for_capabilities()).supports_responses_api
+        return get_features(self._effective_model_name()).supports_responses_api
 
     @property
     def model_info(self) -> dict | None:
@@ -1258,7 +1260,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         if self.is_caching_prompt_active():
             self._apply_prompt_caching(messages)
 
-        model_features = get_features(self._model_name_for_capabilities())
+        model_features = get_features(self._effective_model_name())
         cache_enabled = self.is_caching_prompt_active()
         vision_enabled = self.vision_is_active()
         function_calling_enabled = self.native_tool_calling

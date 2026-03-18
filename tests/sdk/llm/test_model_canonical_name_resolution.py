@@ -76,3 +76,63 @@ def test_model_canonical_name_with_real_model_info():
     assert proxied.vision_is_active() == base.vision_is_active()
     assert proxied.is_caching_prompt_active() == base.is_caching_prompt_active()
     assert proxied.uses_responses_api() == base.uses_responses_api()
+
+
+def test_canonical_name_used_for_metrics_and_telemetry(monkeypatch):
+    """Metrics and Telemetry model_name should use canonical name, not raw model."""
+
+    def fake_get_model_info(secret_api_key, base_url, model):
+        return None
+
+    def fake_supports_vision(model: str) -> bool:
+        return False
+
+    def fake_get_features(model: str):
+        return DummyFeatures(model)
+
+    monkeypatch.setattr(
+        "openhands.sdk.llm.llm.get_litellm_model_info", fake_get_model_info
+    )
+    monkeypatch.setattr("openhands.sdk.llm.llm.supports_vision", fake_supports_vision)
+    monkeypatch.setattr("openhands.sdk.llm.llm.get_features", fake_get_features)
+
+    canonical = "anthropic/claude-sonnet-4-6"
+    arn = (
+        "bedrock/arn:aws:bedrock:us-east-1:123456"
+        ":inference-profile/us.anthropic.claude-sonnet-4-6"
+    )
+
+    llm = LLM(model=arn, model_canonical_name=canonical)
+
+    # Initial construction uses canonical name
+    assert llm.metrics.model_name == canonical
+    assert llm.telemetry.model_name == canonical
+
+    # After reset_metrics() (called by LLMRegistry after model_copy),
+    # lazy re-creation must still use canonical name
+    llm.reset_metrics()
+    assert llm.metrics.model_name == canonical
+    assert llm.telemetry.model_name == canonical
+
+
+def test_metrics_uses_raw_model_when_no_canonical(monkeypatch):
+    """Without model_canonical_name, metrics fall back to the raw model string."""
+
+    def fake_get_model_info(secret_api_key, base_url, model):
+        return None
+
+    def fake_supports_vision(model: str) -> bool:
+        return False
+
+    def fake_get_features(model: str):
+        return DummyFeatures(model)
+
+    monkeypatch.setattr(
+        "openhands.sdk.llm.llm.get_litellm_model_info", fake_get_model_info
+    )
+    monkeypatch.setattr("openhands.sdk.llm.llm.supports_vision", fake_supports_vision)
+    monkeypatch.setattr("openhands.sdk.llm.llm.get_features", fake_get_features)
+
+    llm = LLM(model="openai/gpt-4o")
+    assert llm.metrics.model_name == "openai/gpt-4o"
+    assert llm.telemetry.model_name == "openai/gpt-4o"

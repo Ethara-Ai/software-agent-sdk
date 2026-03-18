@@ -269,8 +269,6 @@ class Telemetry(BaseModel):
         except Exception as e:
             logger.debug(f"Failed to get cost from LiteLLM headers: {e}")
 
-        # move on to litellm cost calculator
-        # Handle model name properly - if it doesn't contain "/", use as-is
         if "/" in self.model_name:
             provider, bare = self.model_name.split("/", 1)
             extra_kwargs["model"] = bare

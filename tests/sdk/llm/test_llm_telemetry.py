@@ -329,7 +329,6 @@ class TestTelemetryCostCalculation:
             mock_cost.return_value = 0.10
             telemetry._compute_cost(mock_response)
 
-            # Should strip provider prefix
             call_kwargs = mock_cost.call_args[1]
             assert call_kwargs["model"] == "gpt-4o-mini"
             assert call_kwargs["custom_llm_provider"] == "provider"
