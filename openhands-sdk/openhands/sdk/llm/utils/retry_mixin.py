@@ -6,7 +6,7 @@ from tenacity import (
     retry,
     retry_if_exception_type,
     stop_after_attempt,
-    wait_exponential,
+    wait_exponential_jitter,
 )
 
 from openhands.sdk.llm.exceptions import LLMNoResponseError
@@ -28,12 +28,15 @@ class RetryMixin:
         retry_exceptions: tuple[type[BaseException], ...] = (LLMNoResponseError,),
         retry_min_wait: int = 8,
         retry_max_wait: int = 64,
-        retry_multiplier: float = 2.0,
+        retry_multiplier: float = 2.0,  # noqa: ARG002
         retry_listener: RetryListener | None = None,
     ) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
         """
         Create a LLM retry decorator with customizable parameters.
         This is used for 429 errors, and a few other exceptions in LLM classes.
+
+        Uses exponential backoff with jitter to prevent thundering-herd
+        when multiple workers hit 429s simultaneously.
         """
 
         def before_sleep(retry_state: RetryCallState) -> None:
@@ -77,10 +80,10 @@ class RetryMixin:
             stop=stop_after_attempt(num_retries),
             reraise=True,
             retry=retry_if_exception_type(retry_exceptions),
-            wait=wait_exponential(
-                multiplier=retry_multiplier,
-                min=retry_min_wait,
+            wait=wait_exponential_jitter(
+                initial=retry_min_wait,
                 max=retry_max_wait,
+                jitter=retry_min_wait,
             ),
         )
         return retry_decorator
