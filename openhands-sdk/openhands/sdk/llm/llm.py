@@ -997,12 +997,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
             assert isinstance(self.api_key, SecretStr)
             api_key_value = self.api_key.get_secret_value()
 
-        # LiteLLM treats api_key for Bedrock as an AWS bearer token.
-        # Passing a non-Bedrock key (e.g. OpenAI/Anthropic) can cause Bedrock
-        # to reject the request with an "Invalid API Key format" error.
-        # For IAM/SigV4 auth (the default Bedrock path), do not forward api_key.
-        if api_key_value is not None and self._infer_litellm_provider() == "bedrock":
-            return None
+        # Do NOT suppress api_key for Bedrock — breaks ABSK Bearer auth.
 
         return api_key_value
 
