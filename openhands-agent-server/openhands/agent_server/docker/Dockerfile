@@ -57,6 +57,8 @@ RUN test -x /agent-server/dist/openhands-agent-server
 FROM ${BASE_IMAGE} AS base-image-minimal
 ARG USERNAME UID GID PORT
 
+# Ensure we run as root for package installation (base images may have non-root default user)
+USER root
 
 ARG OPENHANDS_BUILD_GIT_SHA=unknown
 ARG OPENHANDS_BUILD_GIT_REF=unknown
@@ -65,7 +67,8 @@ ENV OPENHANDS_BUILD_GIT_REF=${OPENHANDS_BUILD_GIT_REF}
 
 # Install base packages and create user
 RUN set -eux; \
-    # Install base packages (works for both Debian-based images)
+    # Remove Azul Zulu repo if present — stale metadata causes apt-get update failures
+    rm -f /etc/apt/sources.list.d/zulu.list 2>/dev/null || true; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         ca-certificates curl wget sudo apt-utils git jq tmux build-essential \
@@ -83,6 +86,20 @@ RUN set -eux; \
     mkdir -p /workspace/project; \
     chown -R ${USERNAME}:${USERNAME} /workspace; \
     rm -rf /var/lib/apt/lists/*
+
+# Fix permissions on repository directories so openhands user can read all files.
+# Base images (e.g. Multi-SWE-Bench) may have restrictive permissions on
+# .git/objects/pack/*.promisor files that prevent the non-root agent user from
+# reading the repository.
+RUN set -eux; \
+    for dir in /testbed /app/repo /home/*/repo /home/*/.git; do \
+        if [ -d "$dir" ] || [ -L "$dir" ]; then \
+            chmod -R a+rX "$dir" 2>/dev/null || true; \
+        fi; \
+    done; \
+    find /testbed /app /home -name '.git' -type d 2>/dev/null | while read gitdir; do \
+        chmod -R a+rX "$gitdir" 2>/dev/null || true; \
+    done || true
 
 # NOTE: we should NOT include UV_PROJECT_ENVIRONMENT here, 
 # since the agent might use it to perform other work (e.g. tools that use Python)
