@@ -70,9 +70,11 @@ REASONING_EFFORT_MODELS: list[str] = [
     "gemini-3.1-pro-preview",
     # OpenAI GPT-5 family (includes mini variants)
     "gpt-5",
-    # Anthropic Opus 4.5 and 4.6
+    # Anthropic Opus family
     "claude-opus-4-5",
     "claude-opus-4-6",
+    "claude-opus-4-7",
+    "claude-opus-4-8",
     "claude-sonnet-4-6",
     # Nova 2 Lite
     "nova-2-lite",
@@ -112,6 +114,8 @@ PROMPT_CACHE_MODELS: list[str] = [
     "claude-sonnet-4-6",
     "claude-opus-4-5",
     "claude-opus-4-6",
+    "claude-opus-4-7",
+    "claude-opus-4-8",
     "claude-sonnet-4-6",
 ]
 
