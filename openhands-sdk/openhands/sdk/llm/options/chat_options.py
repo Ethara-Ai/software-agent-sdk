@@ -71,6 +71,20 @@ def select_chat_options(
         out.pop("temperature", None)
         out.pop("top_p", None)
 
+    # Adaptive thinking models (e.g. Claude Opus 4.7/4.8): manual thinking
+    # (type="enabled") and a top-level reasoning_effort are rejected with a 400.
+    # Use thinking.type="adaptive" with output_config.effort, and omit sampling
+    # params (temperature/top_p/top_k). display="summarized" makes the model return
+    # reasoning/thinking content in the response.
+    if get_features(llm.model).supports_adaptive_thinking:
+        out["thinking"] = {"type": "adaptive", "display": "summarized"}
+        if llm.reasoning_effort is not None and llm.reasoning_effort != "none":
+            out["output_config"] = {"effort": llm.reasoning_effort}
+        out.pop("temperature", None)
+        out.pop("top_p", None)
+        out.pop("top_k", None)
+        out["max_tokens"] = llm.max_output_tokens
+
     # REMOVE_AT: 1.15.0 - Remove this block along with LLM.safety_settings field
     # Mistral / Gemini safety (deprecated)
     if llm.safety_settings:
