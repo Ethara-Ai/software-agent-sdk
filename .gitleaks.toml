@@ -1,0 +1,57 @@
+# gitleaks configuration — CRUCIBLE CRUCIBLE-1 triage.
+#
+# Every entry below corresponds to a finding triaged as a confirmed false
+# positive in REPORT.md (Bug Tickets → CRUCIBLE-1 + false-positive ledger).
+# These are NOT live credentials:
+#   - unit-test fixtures use synthetic placeholders (eyJhbG...VCJ9..., API_KEY=***)
+#   - documentation shows illustrative `curl -H "Authorization: ..."` examples
+#   - .github/workflows/server.yml uses GitHub `secrets.*` context, not literals
+#   - log.txt is a local runtime log (history-only; deleted in 46ca1b74, gitignored)
+#
+# Allowlisting here (rather than deleting fixtures or scrubbing history) keeps the
+# evidence intact while letting the gate return 0 honestly. Wired into pre-commit
+# so new real secrets are still caught.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Synthetic secrets in unit-test fixtures (placeholders, not live)"
+paths = [
+  '''tests/sdk/conversation/test_secret_source\.py''',
+  '''tests/sdk/conversation/test_secrets_manager\.py''',
+  '''tests/tools/glob/test_consistency\.py''',
+  '''tests/tools/grep/test_consistency\.py''',
+]
+
+[[allowlists]]
+description = "Illustrative curl Authorization-header examples in documentation"
+paths = [
+  '''.*README.*\.md''',
+  '''.*README_RUNTIME_BUILD\.md''',
+  '''SIMPLIFIED_API_DESIGN\.md''',
+]
+
+[[allowlists]]
+description = "CI workflow uses GitHub secrets context / placeholders, not literals"
+paths = [
+  '''\.github/workflows/server\.yml''',
+]
+
+[[allowlists]]
+description = "Local runtime log, history-only (deleted + gitignored); no live value"
+paths = [
+  '''log\.txt''',
+]
+
+[[allowlists]]
+description = "Virtualenv / build / cache dirs are environment, not the deliverable (scope ignore allow-list)"
+paths = [
+  '''\.venv/.*''',
+  '''\.worktrees/.*''',
+  '''node_modules/.*''',
+  '''dist/.*''',
+  '''build/.*''',
+  '''.*\.egg-info/.*''',
+  '''audit/results/.*''',
+]

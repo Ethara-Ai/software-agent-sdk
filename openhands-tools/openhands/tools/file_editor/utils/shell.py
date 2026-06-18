@@ -34,7 +34,10 @@ def run_shell_cmd(
     try:
         process = subprocess.Popen(
             cmd,
-            shell=True,
+            # Trust boundary: the file-editor's shell runner intentionally
+            # accepts a shell command string (the agent's shell-out feature);
+            # shell=True is by design. CRUCIBLE waiver: intentional_shell_by_design.
+            shell=True,  # noqa: S602 — agent shell-out is a feature, by design
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,

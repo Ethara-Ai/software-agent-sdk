@@ -234,7 +234,12 @@ class ApptainerWorkspace(RemoteWorkspace):
 
     def _start_container(self) -> None:
         """Start the Apptainer container instance."""
-        # Prepare environment variables
+        # Prepare environment variables.
+        # Trust boundary: only keys in self.forward_env (operator-configured
+        # allow-list) are forwarded into the container via --env. Values come
+        # from the host environment by explicit operator intent, not from agent
+        # output. CRUCIBLE waiver: intentional_shell_by_design (env-forwarding
+        # is a designed Apptainer feature).
         env_args: list[str] = []
         for key in self.forward_env:
             if key in os.environ:

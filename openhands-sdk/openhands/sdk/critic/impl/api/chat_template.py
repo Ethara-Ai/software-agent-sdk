@@ -34,7 +34,12 @@ CACHE_DIR = Path.home() / ".cache" / "chat_templates"
 def _get_cache_path(tokenizer_name: str) -> Path:
     """Get the cache path for a tokenizer config."""
     # Create a safe filename from the tokenizer name
-    safe_name = hashlib.md5(tokenizer_name.encode()).hexdigest()
+    # MD5 here is a NON-SECURITY cache-key hash (tokenizer name -> stable cache
+    # filename); usedforsecurity=False keeps the identical digest, so cache
+    # paths are unchanged. Not used for any security primitive.
+    safe_name = hashlib.md5(
+        tokenizer_name.encode(), usedforsecurity=False
+    ).hexdigest()
     return CACHE_DIR / f"{safe_name}_tokenizer_config.json"
 
 

@@ -43,7 +43,11 @@ def execute_command(
     timeout: float | None = None,
     print_output: bool = True,
 ) -> subprocess.CompletedProcess:
-    # For string commands, use shell=True to handle shell operators properly
+    # For string commands, use shell=True to handle shell operators properly.
+    # Trust boundary: a str cmd is an explicit caller request for shell parsing
+    # (pipes/&&/globs); a list cmd takes shell=False + shlex-quoted logging.
+    # CRUCIBLE waiver: intentional_shell_by_design. Switching to shell=False
+    # would break recorded runs that rely on shell operators.
     if isinstance(cmd, str):
         cmd_to_run = cmd
         use_shell = True

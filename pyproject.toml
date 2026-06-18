@@ -3,14 +3,41 @@
 members = ["openhands-sdk", "openhands-tools", "openhands-workspace", "openhands-agent-server"]
 
 # Security: Enforce minimum versions for transitive dependencies with known CVEs
+# Floors below are derived from an osv-scanner sweep of uv.lock (CRUCIBLE
+# CRUCIBLE-2); each is the lowest fixed version above what was previously locked.
 [tool.uv]
 constraint-dependencies = [
-    "starlette>=0.49.1",  # CVE-2025-62727
-    "aiohttp>=3.13.3",  # CVE-2025-69223 + 7 others
-    "urllib3>=2.6.3",  # CVE-2026-21441, CVE-2025-66471, CVE-2025-66418
+    "starlette>=1.3.1",  # CVE-2025-62727 + osv sweep
+    "aiohttp>=3.14.1",  # osv: 21 advisories fixed by 3.14.1
+    "urllib3>=2.7.0",  # CVE-2026-21441, CVE-2025-66471, CVE-2025-66418 + osv
     "protobuf>=6.33.5",  # CVE-2026-0994
-    "pillow>=12.1.1",  # CVE-2026-25990
+    "pillow>=12.2.0",  # CVE-2026-25990 + osv
     "orjson>=3.11.7",  # CVE-2025-67221
+    "authlib>=1.7.1",  # osv sweep (9 advisories)
+    "cryptography>=48.0.1",  # osv sweep (5 advisories)
+    # fastmcp pinned to the 2.x line: 3.x is an API-breaking major (moves
+    # fastmcp.mcp_config) that breaks openhands-sdk skill.py. The SDK declares
+    # fastmcp>=2.11.3 with an open upper bound, so a bare resolve floats to 3.x
+    # and breaks imports. Cap at <3 until a coordinated 3.x migration. The 4
+    # fastmcp advisories are tracked as HOLD. See REPORT.md.
+    "fastmcp>=2.11.3,<3",
+    "gitpython>=3.1.50",  # osv sweep (5 advisories)
+    "idna>=3.15",  # osv sweep
+    # litellm is sourced from the Ethara-Ai/litellm git fork (see tool.uv.sources);
+    # a version constraint cannot move it. Its 8 advisories require a fork rebase
+    # onto litellm>=1.84.0 — tracked as HOLD (maintainer decision). See REPORT.md.
+    "lxml>=6.1.0",  # osv sweep
+    "mako>=1.3.12",  # osv sweep
+    "pyarrow>=23.0.1",  # osv sweep
+    "pyasn1>=0.6.3",  # osv sweep
+    "pygments>=2.20.0",  # osv sweep
+    "pyjwt>=2.13.0",  # osv sweep (12 advisories)
+    "pypdf>=6.13.3",  # osv sweep (16 advisories)
+    "python-dotenv>=1.2.2",  # osv sweep
+    "python-multipart>=0.0.31",  # osv sweep (6 advisories)
+    "requests>=2.33.0",  # osv sweep
+    "tornado>=6.5.7",  # osv sweep (8 advisories)
+    "pip>=26.1.2",  # osv sweep (PYSEC-2026-196 + 2 GHSA); build tool, safe bump
 ]
 
 # Workspace sources for intra-repo dependencies

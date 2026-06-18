@@ -1,10 +1,9 @@
-<a name="readme-top"></a>
+`<a name="readme-top"></a>`
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/OpenHands/docs/main/openhands/static/img/logo.png" alt="Logo" width="200">
   <h1 align="center">OpenHands Software Agent SDK </h1>
 </div>
-
 
 <div align="center">
   <a href="https://github.com/OpenHands/software-agent-sdk/blob/main/LICENSE"><img src="https://img.shields.io/github/license/OpenHands/software-agent-sdk?style=for-the-badge&color=blue" alt="MIT License"></a>
@@ -12,7 +11,6 @@
   <br>
   <a href="https://docs.openhands.dev/sdk"><img src="https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge" alt="Check out the documentation"></a>
   <a href="https://arxiv.org/abs/2511.03690"><img src="https://img.shields.io/badge/Paper-000?logoColor=FFE165&logo=arxiv&style=for-the-badge" alt="Tech Report"></a>
-  <a href="https://docs.google.com/spreadsheets/d/1wOUdFCMyY6Nt0AIqF705KN4JKOWgeI4wUGUP60krXXs/edit?gid=811504672#gid=811504672"><img src="https://img.shields.io/badge/SWEBench-77.6-000?logoColor=FFE165&style=for-the-badge" alt="Benchmark Score"></a>
   <br>
   <!-- Keep these links. Translations will automatically update with the README. -->
   <a href="https://www.readme-i18n.com/OpenHands/software-agent-sdk?lang=de">Deutsch</a> |
@@ -24,12 +22,13 @@
   <a href="https://www.readme-i18n.com/OpenHands/software-agent-sdk?lang=ru">Русский</a> |
   <a href="https://www.readme-i18n.com/OpenHands/software-agent-sdk?lang=zh">中文</a>
 
-  <hr>
+<hr>
 </div>
 
 The OpenHands Software Agent SDK is a set of Python and REST APIs for **building agents that work with code**.
 
 You can use the OpenHands Software Agent SDK for:
+
 * One-off tasks, like building a README for your repo
 * Routine maintenance tasks, like updating dependencies
 * Major tasks that involve multiple agents, like refactors and rewrites
@@ -86,8 +85,9 @@ For detailed documentation, tutorials, and API reference, visit:
 **[https://docs.openhands.dev/sdk](https://docs.openhands.dev/sdk)**
 
 The documentation includes:
+
 - [Getting Started Guide](https://docs.openhands.dev/sdk/getting-started) - Installation and setup
-- [Architecture & Core Concepts](https://docs.openhands.dev/sdk/arch/overview) - Agents, tools, workspaces, and more
+- [Architecture &amp; Core Concepts](https://docs.openhands.dev/sdk/arch/overview) - Agents, tools, workspaces, and more
 - [Guides](https://docs.openhands.dev/sdk/guides/hello-world) - Hello World, custom tools, MCP, skills, and more
 - [API Reference](https://docs.openhands.dev/sdk/guides/agent-server/api-reference/server-details/alive) - Agent Server REST API documentation
 

@@ -3,7 +3,11 @@ import json
 import re
 from pathlib import Path
 from typing import Annotated, ClassVar, Literal, Union
-from xml.sax.saxutils import escape as xml_escape
+# xml.sax.saxutils.escape is used ONLY to ESCAPE output when building the
+# <available_skills> prompt block (see generate_skills_xml below). There is no
+# XML PARSING here, so there is no XXE/defused-xml surface. CRUCIBLE waiver:
+# not_exploitable (output-escaping only, no parser).
+from xml.sax.saxutils import escape as xml_escape  # noqa: S406 — escape-only, no XML parse
 
 import frontmatter
 from fastmcp.mcp_config import MCPConfig

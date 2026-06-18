@@ -147,11 +147,16 @@ class HookExecutor:
         self.async_process_manager.cleanup_expired()
 
         # Handle async hooks: fire and forget
+        # Trust boundary: hook.command is operator-configured (lifecycle hook
+        # defined in trusted config, NOT agent/model output). shell=True is
+        # intentional so hooks may use pipes/&&/globs. CRUCIBLE waiver:
+        # intentional_shell_by_design. Do NOT switch to shell=False — it would
+        # strip shell semantics that recorded hook commands depend on.
         if hook.async_:
             try:
                 process = subprocess.Popen(
                     hook.command,
-                    shell=True,
+                    shell=True,  # noqa: S602 — operator-configured command, by design
                     cwd=self.working_dir,
                     env=hook_env,
                     stdin=subprocess.PIPE,
@@ -186,10 +191,13 @@ class HookExecutor:
                 )
 
         try:
-            # Execute the hook command synchronously
+            # Execute the hook command synchronously.
+            # Trust boundary: operator-configured hook command (not agent/model
+            # output); shell=True is intentional. CRUCIBLE waiver:
+            # intentional_shell_by_design.
             result = subprocess.run(
                 hook.command,
-                shell=True,
+                shell=True,  # noqa: S602 — operator-configured command, by design
                 cwd=self.working_dir,
                 env=hook_env,
                 input=event_json,

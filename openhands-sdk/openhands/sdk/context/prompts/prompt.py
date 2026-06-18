@@ -67,7 +67,12 @@ def _get_env(prompt_dir: str) -> Environment:
     env = Environment(
         loader=FlexibleFileSystemLoader(prompt_dir),
         bytecode_cache=bcc,
-        autoescape=False,
+        # autoescape=False is INTENTIONAL: these templates render PLAIN-TEXT
+        # agent prompts sent to an LLM, not HTML. Enabling autoescape would
+        # HTML-escape <, >, &, quotes in every prompt, corrupting agent inputs
+        # and breaking trajectory reproducibility. Not an XSS surface (no HTML
+        # sink). CRUCIBLE waiver: non_html_prompt_template_by_design.
+        autoescape=False,  # noqa: S701 — plain-text LLM prompts, not HTML
     )
     # Optional: expose refine as a filter so templates can use {{ text|refine }}
     env.filters["refine"] = refine
