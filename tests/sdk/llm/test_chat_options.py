@@ -14,6 +14,7 @@ class DummyLLM:
     extra_headers: dict[str, str] | None = None
     reasoning_effort: str | None = None
     extended_thinking_budget: int | None = None
+    force_adaptive_thinking: bool = False
     safety_settings: list[dict[str, Any]] | None = None
     litellm_extra_body: dict[str, Any] | None = None
     # Align with LLM default; only emitted for models that support it
@@ -164,3 +165,61 @@ def test_extended_thinking_budget_clamped_below_max_tokens():
         "budget_tokens": 500,
     }
     assert out.get("max_tokens") == 1000
+
+
+def test_force_adaptive_thinking_emits_adaptive_schema_for_opus_4_8():
+    llm = DummyLLM(
+        model="vertex_ai/claude-opus-4-8",
+        reasoning_effort="high",
+        force_adaptive_thinking=True,
+        max_output_tokens=4096,
+    )
+    out = select_chat_options(llm, user_kwargs={}, has_tools=True)
+
+    assert out.get("thinking") == {"type": "adaptive", "display": "summarized"}
+    assert out.get("extra_body") == {"output_config": {"effort": "high"}}
+    assert out.get("max_tokens") == 4096
+    assert "reasoning_effort" not in out
+    assert "temperature" not in out
+    assert "top_p" not in out
+    assert "top_k" not in out
+
+
+def test_force_adaptive_thinking_merges_into_existing_extra_body():
+    llm = DummyLLM(
+        model="claude-opus-4-7",
+        reasoning_effort="medium",
+        force_adaptive_thinking=True,
+        litellm_extra_body={"return_token_ids": True},
+    )
+    out = select_chat_options(llm, user_kwargs={}, has_tools=True)
+
+    assert out.get("extra_body") == {
+        "return_token_ids": True,
+        "output_config": {"effort": "medium"},
+    }
+
+
+def test_force_adaptive_thinking_noop_when_model_not_supported():
+    llm = DummyLLM(
+        model="claude-opus-4-5-20251101",
+        reasoning_effort="high",
+        force_adaptive_thinking=True,
+    )
+    out = select_chat_options(llm, user_kwargs={}, has_tools=True)
+
+    assert "thinking" not in out
+    assert "output_config" not in (out.get("extra_body") or {})
+    assert out.get("reasoning_effort") == "high"
+
+
+def test_force_adaptive_thinking_disabled_by_default_for_opus_4_8():
+    llm = DummyLLM(
+        model="vertex_ai/claude-opus-4-8",
+        reasoning_effort="high",
+    )
+    out = select_chat_options(llm, user_kwargs={}, has_tools=True)
+
+    assert "thinking" not in out
+    assert out.get("reasoning_effort") == "high"
+    assert "output_config" not in (out.get("extra_body") or {})

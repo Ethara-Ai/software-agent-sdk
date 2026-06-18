@@ -324,6 +324,19 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
         description="The budget tokens for extended thinking, "
         "supported by Anthropic models.",
     )
+    force_adaptive_thinking: bool = Field(
+        default=False,
+        description=(
+            "Opt-in: when True AND the model is in ADAPTIVE_THINKING_MODELS "
+            "(Claude Opus 4.7/4.8/Fable 5), emit "
+            "thinking={'type': 'adaptive', 'display': 'summarized'} plus "
+            "output_config.effort (via extra_body for litellm-version safety), "
+            "and strip reasoning_effort so litellm does not overwrite the "
+            "thinking block. display='summarized' is required for thinking "
+            "content to appear in responses on Opus 4.7+ (default is "
+            "'omitted'). Default False preserves prior behavior."
+        ),
+    )
     seed: int | None = Field(
         default=None, description="The seed to use for random number generation."
     )
