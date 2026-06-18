@@ -95,22 +95,18 @@ def select_chat_options(
         out["extra_body"] = llm.litellm_extra_body
 
     # Opt-in adaptive thinking for models that only accept thinking.type="adaptive"
-    # (Opus 4.7/4.8/Fable 5). Without display="summarized" the model's default is
-    # "omitted" and thinking blocks come back empty, so display is required here.
-    # output_config goes through extra_body so it survives older litellm releases
-    # that don't recognize it as a top-level kwarg. Placed after the user-provided
-    # extra_body pass-through so output_config merges into (not replaces) it.
+    # (Opus 4.7/4.8/Fable 5). display="summarized" is REQUIRED for these models to
+    # return populated thinking content (their default is "omitted"). output_config
+    # is emitted at the top level so litellm transformations preserve it; an
+    # earlier draft wrapped it in extra_body, but older litellm versions did not
+    # unpack extra_body for Vertex Claude and the API rejected the request.
     if (
         llm.force_adaptive_thinking
         and get_features(llm.model).supports_adaptive_thinking
     ):
         out["thinking"] = {"type": "adaptive", "display": "summarized"}
         if llm.reasoning_effort is not None and llm.reasoning_effort != "none":
-            existing_eb = out.get("extra_body") or {}
-            out["extra_body"] = {
-                **existing_eb,
-                "output_config": {"effort": llm.reasoning_effort},
-            }
+            out["output_config"] = {"effort": llm.reasoning_effort}
         # Strip reasoning_effort so litellm does not re-derive and overwrite
         # the thinking block via its reasoning_effort -> thinking mapping.
         out.pop("reasoning_effort", None)

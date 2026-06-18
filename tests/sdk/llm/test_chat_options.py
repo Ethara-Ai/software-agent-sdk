@@ -177,7 +177,7 @@ def test_force_adaptive_thinking_emits_adaptive_schema_for_opus_4_8():
     out = select_chat_options(llm, user_kwargs={}, has_tools=True)
 
     assert out.get("thinking") == {"type": "adaptive", "display": "summarized"}
-    assert out.get("extra_body") == {"output_config": {"effort": "high"}}
+    assert out.get("output_config") == {"effort": "high"}
     assert out.get("max_tokens") == 4096
     assert "reasoning_effort" not in out
     assert "temperature" not in out
@@ -185,7 +185,7 @@ def test_force_adaptive_thinking_emits_adaptive_schema_for_opus_4_8():
     assert "top_k" not in out
 
 
-def test_force_adaptive_thinking_merges_into_existing_extra_body():
+def test_force_adaptive_thinking_preserves_existing_extra_body():
     llm = DummyLLM(
         model="claude-opus-4-7",
         reasoning_effort="medium",
@@ -194,10 +194,8 @@ def test_force_adaptive_thinking_merges_into_existing_extra_body():
     )
     out = select_chat_options(llm, user_kwargs={}, has_tools=True)
 
-    assert out.get("extra_body") == {
-        "return_token_ids": True,
-        "output_config": {"effort": "medium"},
-    }
+    assert out.get("extra_body") == {"return_token_ids": True}
+    assert out.get("output_config") == {"effort": "medium"}
 
 
 def test_force_adaptive_thinking_noop_when_model_not_supported():
@@ -209,7 +207,7 @@ def test_force_adaptive_thinking_noop_when_model_not_supported():
     out = select_chat_options(llm, user_kwargs={}, has_tools=True)
 
     assert "thinking" not in out
-    assert "output_config" not in (out.get("extra_body") or {})
+    assert "output_config" not in out
     assert out.get("reasoning_effort") == "high"
 
 
@@ -222,4 +220,4 @@ def test_force_adaptive_thinking_disabled_by_default_for_opus_4_8():
 
     assert "thinking" not in out
     assert out.get("reasoning_effort") == "high"
-    assert "output_config" not in (out.get("extra_body") or {})
+    assert "output_config" not in out
