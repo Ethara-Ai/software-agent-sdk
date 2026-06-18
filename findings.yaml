@@ -1,9 +1,5 @@
 schema_version: '1'
 disposition: HOLD
-disposition_reason: "Code gate clean (0 CRITICAL, 0 unwaived secrets, R1/R2/R3-completed/R4/R6 all pass).\
-  \ HOLD driven by: (a) dirty tree \u2014 clears when the audit harness is committed; (b) 14 unreachable\
-  \ dependency-CVE HIGHs accepted/scheduled below; (c) \xA71.10 provenance gate intentionally unwired\
-  \ at engine-scope. All three are FORMALLY ACCEPTED risk decisions, not unresolved defects."
 severity_tally:
   CRITICAL: 0
   HIGH: 45
@@ -2774,815 +2770,813 @@ findings:
 waivers:
 - instance_id: 47f945ee1d8a63f23418fd6b7b811e01a671dffe92e5fce91a5e329e18276921
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/api.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/api.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 7cb9bf244a88de0e3f9478529f7fca9ec6b498c35680e787147c695b075bc2a1
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/bash_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 6d08993c9903036210c8301a4255ac568e6895a0aef2bc18a74304ff25c5ee41
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/bash_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 36366286fb46de84966d74cea1beb622fb5a566a4d1e3cc0bf2d2fef357710ae
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/config.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/config.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 4c8a9e6f67b4f74baadf07bec368210b428419d6cd46d5f96012e75acad1a9c1
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/conversation_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 38e20965ebdb531d83158e0148a34825c7cb7d19ee0e53c2acdadd57896f183f
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/conversation_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: fb4da47726078daa5dc56ba392c15b441469c9e89ad84646995f45db4a2da8c4
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/conversation_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 0c8ac075dbaabe7787f3abb4457eb5bf8dc6db0ddbc94f99db4436092e9ffa9b
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 35c35170b13a3e9687861f022110ff8bda26116a459972c5b545518de727dfb4
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 49ce3e109842eb0f98420a8ddf72dc1d0345b03ccb62c9a91d2a2e9477f8fd6e
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 7dd2d1ca089330bf506bff8f7dd85a512ae6dab2920ba8b176ff53d903756132
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 6d52d9597237f91395f8a80960cfae23567e2203268d2e70a432a4649fa4b1a1
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a189ed2a15b4e2f7b3768e7a9501645bb432e1020d0e455b6765562dd1b1611a
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/docker/build.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 51a48d4608768249721fe86b052f01b44b03ba8c8e19ca7ba0405563d06d942e
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 988f821c3f7854739f034ada197adbd0b1f77d7632a5a4beb5a84c7056348170
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: e42925f5d0fdb841d8840c5a11e388ad677dccd5140d291d830e16dde28bf260
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a448e3e7817e1cf78d80fd9ab056448072cb68e0ca215871fe33259ce08d7f52
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: d13bc4322af819ad17365565998d0545681a47a49a2eae28854d0a8d69eed770
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 9bbe624d4f78cd60b0a1fa2adb822a822b4fdb2ee220943335a8dbfd90767544
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a1318bb0266cd7567a677ebd9480ca55fe3addc14d9e99a0111d93d1cd100818
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 63f6a693a9523ecbde07208fa0abe37d064ceb16d13c999d60c65b8a276c4634
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 957312a5816a6005d22958f4fffe3c4f5873dccfdc9259fbb7007ed5c729f390
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ceb724dec9d636e52783a9983fd03ab006ba214cae88a1d20d10c1260761e607
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-agent-server/openhands/agent_server/env_parser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 773b17192d079658bab9ab5374a8d751f9205eae85a4ac63f10f2dc56fde3422
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/event_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 0d38572268216959ff73091d7e07561719f7571a40f5e436ec976e47298a2a57
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/event_router.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ae9814b7d396cd514325f68fe61cc76c26d2898c9b7d5a348982cda88ea6d5cd
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-agent-server/openhands/agent_server/event_service.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a572b1d694da7709d6d80353b60168ed6f15a1d9837aec2fe3f304115df7fa71
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: eb45bd0336fe675b05e5b144b303944dc89dc182fd144209da88f98c76028a93
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 4171d26192d034143e9104b5d2c4424db85aba29a7d889c595c640a2997867e5
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/agent/acp_agent.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a04e4a45cda66e00e812e2bba8ed43b7056b4858d4a256a8e8567a85c4bf53de
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/agent.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/agent.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ca0351dcea846e9dce8990f0717ebfbbd3f79ee54e7d0aeca66b5689585a183c
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/agent.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/agent/agent.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 2b68f50a762ca52c13f9c44941606891109fdd03adafc8ec259b0648dbc39d20
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B112 (openhands-sdk/openhands/sdk/agent/base.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B112 (openhands-sdk/openhands/sdk/agent/base.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3ec28f8648575a6d6f2cb42dd682c5b4e6c717573a5b5b5831a99b10b2448c6a
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B112 (openhands-sdk/openhands/sdk/agent/base.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B112 (openhands-sdk/openhands/sdk/agent/base.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3db63f5cbdba488595dfa39bebed11305f5aefc8c4dfbcf3438666db4558daa9
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 1d696da4ee4c9e381d887dcf8a27ad21077e488594649608992ba7bd914b04e8
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: c4fd5ba79a7efbb210cfde0ea60a1d94c708a7fc9296d59997befba91f9a6966
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: efb17112808ecec31b816764f4066cc0a3f117368340f8906f60aae5024a962e
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 53532a133f5f7055997ff3a576df11b955909af0dd7159632c89d0ef1d46688a
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 22a99d222539ec60924895a0c7072f257918bec1df998a2541f27d786246b713
   reason_code: not_exploitable
-  rationale: jinja autoescape=False renders PLAIN-TEXT LLM prompts, not HTML; no HTML sink, no XSS surface.
-    Enabling autoescape would corrupt agent prompts. Documented in-code.
+  rationale: jinja autoescape=False renders PLAIN-TEXT LLM prompts, not HTML; no HTML sink; enabling autoescape
+    would corrupt prompts.
   approved: true
 - instance_id: f12545a7e7895e7bc7b0984cce53e8e761afa078ac2708e843a27c1e0f75e270
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/conversation/fifo_lock.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/conversation/fifo_lock.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3f754ed66952ad7b6e78ab838ad491978d2b2c2de414b07198ce40e98419ff72
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3cb925ea922d2a30fc6676ec172ba8ccc06dcbb8d50bbbcd950aa0baae7c15e9
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 84a8779350aeaf6be711edaadaa7e890f1eb54215eaf7ac2b3d36f33eb1b1e69
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/conversation/impl/remote_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: e0f9123995665bc106861ed3140f43d02512668ce8ad88d1d1de2145add2974a
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/conversation/impl/remote_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 6334b1ab8fc41a6532682ea959a904b47c54d8b9a1ce5976c9a4b0de17eb12b2
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/conversation/impl/remote_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 56f40277357e3f415dd7887717c6c0de08f1977d714da5026ee76af1cc1bd71f
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/conversation/impl/remote_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 8f6a77661353507ea5a9f6dfac9eb875cc83d0387075af579ff10b05f07a4d9e
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/conversation/impl/remote_conversation.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 62ed72d9f8f3d66b640b5c0605a21aeb4e9fa1613705e6ce59aae80238471788
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/critic/impl/api/chat_template.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 92b11ab64b6eb81355cdec2f894992393c56c7f913ad5a0817b0d15cf0c37485
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/base.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/base.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 376443ac19d75db7cdd16aa728b66884974ee9b2de0ec516833083524f18d2e7
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/base.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/base.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: c05ff67f6189cf7115875120aae26e4ede89d739597f0ae2522b16cc6ac6c868
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/condenser.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/condenser.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 54e86c5a2ab213a4610cea438fd059fc91f647eed6e8191a04e424d8cfb8a4f8
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/event/llm_convertible/message.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ccad98a047c5b39af2e02e0a049a27d7bdee4a1de6ccc8df0401067ccd9980c1
   reason_code: intentional_shell_by_design
   rationale: shell=True at openhands-sdk/openhands/sdk/hooks/executor.py is the SDK's intentional shell-out
-    feature (operator hooks / agent shell tool); trust boundary documented in-code. shell=False would
-    break recorded shell-operator runs.
+    feature; trust boundary documented in-code; shell=False breaks recorded runs.
   approved: true
 - instance_id: 4668296a3254c8958277f4d37e0dbad32dc01a6b43825ddaa1aed59c56ddd486
   reason_code: intentional_shell_by_design
   rationale: shell=True at openhands-sdk/openhands/sdk/hooks/executor.py is the SDK's intentional shell-out
-    feature (operator hooks / agent shell tool); trust boundary documented in-code. shell=False would
-    break recorded shell-operator runs.
+    feature; trust boundary documented in-code; shell=False breaks recorded runs.
   approved: true
 - instance_id: 2875a3cdd09f3529ab918f3eb4835f9486c35e143d97e36db5fe3fb4b02e7825
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 257f0347a2943a039c22d1425d9828e93d121cc663ac8e056065419cef406155
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 58fb115532c8bc0ad92cc33bbb31aad5f562b31b5ed0c322c138868194bf5304
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 9d5f28e101036cc07ddfecfc5a07332b3ef28f5e039629442e0924fd9b296ffd
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 259176046a2e6a09c8a92af5ac2bfd5f486ff2d46ae2908c26cc124d5f4fe68d
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 27386e64391a87f3b8f617b34bd2b7715a95e80607ca38739b82a37d79a807f8
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 1d31c3c37b801ee2785f290674863820153280eff46e840ec505118cf3032621
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: fdf7c14ac195ba14f62e1f7c63d116fe205fb98a427f05bda5f7dc1cee71dcf6
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 56145850da39c668d73428481dddeae91883f10402c83f0bc4fd041ea75df24a
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: fcd6e94b1212f9477969ee86fc63dddf8ed2120ce78a45269a0b13b4884460b0
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: ae8a556ef70086a26dd8ee839c29d810fde163bd190ce885f56b994b052bc434
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: b0a548f157d0a6d26607ce0696071f61240c78c5f2ae87d5e699e647dacc6a0f
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/llm.py); assert/try-pass, not exploitable.
+    Batch-acknowledged.
   approved: true
 - instance_id: 6bce451b5fa4089e195dbf91a3849a814ad9b5a412e597aa7de95b3cf4f3e1fb
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/message.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/message.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 65511288fee0fbf194216bdea0fdf639d6f9025f937e533c3df2c0cbe6f151ff
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/message.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/message.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: b8001d5054caf72c4c2e9879ef85edbbea7eee55a56aa8ffff9866e352270036
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 2bf03ee453a23d93bd24a65a8a0acbbc1f1020f117c92298622168b76f68852e
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 844d1d77788b268f6c76ba7e1cb7aa2236290d9aae36269bdd3e87123dd86b55
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 6a1ee35ca4650264f268df06f6194830fcdc5a023ff8466a71c12bd8c6357d62
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 21426a1358f07b3a6e94e7c7c51b2af3c2a23a34136c7c6cd0a47b4fe7d02926
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/model_info.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/model_info.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 83daa831b3abb192431537032d41835baa2fa2749cb1a239afecfca7d2ac4cf6
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/model_info.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/model_info.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a4d5e2579975983c7e5fb8843828baaaa8ac87c9cd079bcf99ba4956c804e353
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/telemetry.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/llm/utils/telemetry.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 8a80efe1fa2039bdb8000006eb2a53748a2c8c4543ebdcb696022187895dd1e9
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/mcp/client.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/mcp/client.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 7a52c3073c727b31d02a309f389223b72c99b14f850e7b3e9f04352c83d7aeff
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/mcp/client.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/mcp/client.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: b20beb59847e4c5e3c89845cc1cbb9c8b08e304eadd3b1e11c579e291834daa5
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/mcp/tool.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/mcp/tool.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 9ea42c5ff1c05c49c4ab0b608d06fe3bb2433a665fe0cac23eebfa4362948047
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/mcp/tool.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/mcp/tool.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: e11361c8b5fac1acb96acd2181935cac46f60483c9d1d3de71648e59a4fb2032
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/schema.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/schema.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: a688f8d1ee0a78e9d4c329145ba4502024456c0d7044b817fa50e633fa4f77b5
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/schema.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/schema.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 753efe35289bdcc41d537f9025782704a9cb5f0e97a6d91893ff53b06d191b03
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/tool.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/tool.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: fb3599cfccfa3f7c68b2c19320978f854034b236003bc4eabc26615634ba75aa
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/tool.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/tool/tool.py); assert/try-pass, not
+    exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 710c1529ead6bb8033d53e44eaccd60ce1c1e959e2e1b6275569b87eebc4840f
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_executor.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_executor.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 18e31f743287bb92400b1033d63fde59ac372141e8e569d403afbfc6efb222fa
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_executor.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_executor.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 848e7124d723d097626b9e3573235a394e2c1de807bacef2a322460b5424d314
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_utils.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/utils/async_utils.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 6b85230bd40ac2723b8827732cd8fd0be37161284e1e8c912295ee3dca1908a3
   reason_code: intentional_shell_by_design
   rationale: shell=True at openhands-sdk/openhands/sdk/utils/command.py is the SDK's intentional shell-out
-    feature (operator hooks / agent shell tool); trust boundary documented in-code. shell=False would
-    break recorded shell-operator runs.
+    feature; trust boundary documented in-code; shell=False breaks recorded runs.
   approved: true
 - instance_id: 4a701d9fd8b6e73b4f75554152f5eee5d6bcba8386776b6084dc1002f6a600bf
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/utils/models.py); assert/try-pass pattern,
-    not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/utils/models.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: d42aa88ec0a41f1184284fb8480e8927f92432d50d2da44737044fdc987f3505
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/workspace/remote/async_remote_workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 49a9d8c8cfc52b31939773ecbfc62776681969cc112b42a0f3e08523b94306cd
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/workspace/remote/base.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-sdk/openhands/sdk/workspace/remote/base.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3e8be57c98291a4d478d98e9dbdaa01b7883e6746b1675a84ab4f2995e362dba
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/workspace/remote/base.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-sdk/openhands/sdk/workspace/remote/base.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: f116b2a9e41dab2d4a622ab1e2eb2cf59b8a5fe5c541f1d1831c508cda2c0922
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3247832e442efc9f84b0729987c3d64a50fed7c54b1ab28585809958f1f616d1
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ca4a617bd63e1aeda2a8be865674b96cbf46c997aeeceea21e454fc436c0e05e
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 334ca666dfea87cff424327a686a3869f9860aad2aca2673bbf0316e097c15d8
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: b77b047ee1a204c827852f0bb6afc6d98582a4369f08e5b590f913c0bc0dd5ab
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: b44da3c4fb8c216f83e841a7f5ff77dc7388f3fb81661fe5bec2681404c1013b
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 63e10b970777a216d56468a04aa0f2a4473b0bc1615ff0cb7d23d248ddcf80ab
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 0f4e6b4c04ee598d3167ebd7d512080e03b381ba3afd56bcb6213b32493376fa
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 68d935ab5e070e36142cf9806e4b6f99c1fdd07140eb1bedecccdaf2a1ebb173
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 101085ca21d8605aa2b8b09c0ce9e9bbc290b9c23bd13b185683e195a17bc574
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/apply_patch/core.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: ec2f10d4361d031879ba739b0db772ce0207bc4292eddab0964c0bd1d0268d5c
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/browser_use/impl.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/browser_use/impl.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 79794780d8fd3de862ffe040f9a57747a0e412e65865f1532a56663ddc7c659b
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/delegate/visualizer.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/delegate/visualizer.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 83e9114305bbae522b1a434b8869c07c98679f626ab24212fdd6b1687f252e88
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/definition.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/definition.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: d04c780bd189e5f317f8ac0ab5c2edab997fd8ad5e22432c3781058123ab6a4a
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/impl.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/impl.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 4eba373b83315d36fe7b5a7f83f3baf190027af42a73b61dbc8ce3761de0eb01
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/impl.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/impl.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 21a9a0f20a4745286085dd5c0f816ef049f7722a671a353a1fb016101ece6f39
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/utils/diff.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/file_editor/utils/diff.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 196c948016330615b98b91c61c3e156fd467b561d84be4496fd559fbbe1e93b0
   reason_code: intentional_shell_by_design
   rationale: shell=True at openhands-tools/openhands/tools/file_editor/utils/shell.py is the SDK's intentional
-    shell-out feature (operator hooks / agent shell tool); trust boundary documented in-code. shell=False
-    would break recorded shell-operator runs.
+    shell-out feature; trust boundary documented in-code; shell=False breaks recorded runs.
   approved: true
 - instance_id: ada4d84c4b526d1e548e75f026081174787a885ef9e07ef53495ea5273c1fbca
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B112 (openhands-tools/openhands/tools/gemini/list_directory/impl.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 0ef5c710a27a69796c079a85f55523bbeb84bc5db933f38e40f071118a3e42e8
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B112 (openhands-tools/openhands/tools/gemini/list_directory/impl.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 5cd1d156623f9790c89a1f898849251258893cdeca4062401d6fca759c6a4cec
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B112 (openhands-tools/openhands/tools/gemini/list_directory/impl.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 88e5af79741738baf4a041416e57b34d37c9abba8d6d6f0d6528604ac3d13740
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/gemini/write_file/impl.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/gemini/write_file/impl.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 1b78c94222b60fca5deb1b8d4c0afa6a7996e2a84240d2032950e9eed4e57b1f
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/impl.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/impl.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 3098d5d27002b124a0e6c102d5be72916c123ee2772da9d38ac5327455bb9040
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 1a4f203e0df1d1c04c43b2721ddfc11b8b5a124168622fc0caf3ccef72a53d61
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: d407e6de9632385e631d901edba4f1b18d2b621c6a8ef1c077b60df1a1555df6
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: cf9fb1096fa45aa81b78d1fb368cd78b915cd324ac4ac9886a43195336686fdc
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: cbf8a7b89c9d7b7704e2a582b090b07152409b188da1260e5dc12cbaae62676e
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: dcf6ab1153fb88ed0ebcb075053831e2e8b4a1e785e922e56e00d7f92ea0ecc3
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-tools/openhands/tools/terminal/terminal/subprocess_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 14ded4d6dab61d220a9cf498d98c0016ff62736124639e680cbd7e45944ba83f
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/terminal/terminal/terminal_session.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 518a2d24e34bd8575dc449126e36bfcaa6c4a75e18a9cfa2b490c53e55273a1f
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-tools/openhands/tools/terminal/terminal/tmux_terminal.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 60407378c6a9656969384bbcea090410ee56367234509c59d4d834c5b38eec0e
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/apptainer/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 2956d53db93ecfc03fee4f573c0a62ec433b8372e23689cd40b8e9314d8b0591
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/apptainer/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 27b477119cc1508e4dea2dc9428010129e657546c80e95eef4f86a0a4c87aa11
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/apptainer/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 941ed62b4504f0863d62892cb1c997a6386a3dc0fda42bcc038e7641c3ecd8d8
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/apptainer/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: c1a227aae7ec523372bf1e1906dff92df62def607298a10654e6282f6e1f2ca7
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 5c026c84b61736eff6c3c2456485d27b6073f0fb47aab91ac74a79560fe7a3ef
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 275e3e047ad13497c9abd2bd855a57e70cdcd957e62f37759a61750ab03b9080
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: c4c5e1103d4ca0750b17cea7164f151301cf511656266520cd99324fdc67380b
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/cloud/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 0f9b5fb49f23447848d37dbc7b002a775868f0f8374bdba560931a5945001b1c
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/docker/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/docker/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: c0dd34ac2f738211b615e2b3a1cd753d92638245435ad38a0364bbbbfdd7d400
   reason_code: accepted_risk
-  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/docker/workspace.py); assert/try-pass
-    pattern, not an exploitable vulnerability. Batch-acknowledged.
+  rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/docker/workspace.py); assert/try-pass,
+    not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: da306c1df27f7d83c67387ce403ed38dd1e6dcea2d2302c3d21af6ea6bcbdb25
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/remote_api/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 39e5d43cd612f82e13a90984c3504c38e28f48c460bbddfcbaaee3b66806023f
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/remote_api/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: e0a2c1ff9dc268691495cb9bf3b1ca830eeaf79599a1cf5e3c1cb1a9cf38a6de
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B101 (openhands-workspace/openhands/workspace/remote_api/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: 16d975e4de21b68764147813a58c47ebd333b43c4c4886f2f0176f9c67661a90
   reason_code: accepted_risk
   rationale: Hygiene-tier bandit B110 (openhands-workspace/openhands/workspace/remote_api/workspace.py);
-    assert/try-pass pattern, not an exploitable vulnerability. Batch-acknowledged.
+    assert/try-pass, not exploitable. Batch-acknowledged.
   approved: true
 - instance_id: cff0030324b40fa19cb1dd012253ab4dc3c25a93784ec97763f91bb550ac7fab
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/actions/pr-review/action.yml: agent shell-out is a
-    designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/actions/pr-review/action.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 48f9361ba843870d3e412fe23d651f6739696957a9d82c00759d3b2c2de66fd6
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/api-compliance-runner.yml: agent shell-out
-    is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/api-compliance-runner.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: aca85423d12383fa1c79d76c317059f2204f1f012bbb1e8bd14afdf76830ae76
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/integration-runner.yml: agent shell-out
-    is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/integration-runner.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: dff50d923e38a8cce2f463e0dea2eb4befb37e40cf27130b4558d7adc147bcb8
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 9cada190672fd850b24b8a438e86bff15a5055b3cf38e02e494588732f313ade
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 91e2f5df820a2bdd6142688f3ca58974356ecb310f322b7a5a5f8ca36aae5af8
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 4892c932f99386fc1c652d7183a124e94fa938ac7c321fcaa877b5a2c7e9e819
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 7c196deca14152ff1c70bb0e5ef883fe244064cc3b24c3795d310eee0315944e
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 63891564b79507182d161679713a28728cfbd225105441bd6c8a646b3e50e8ad
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 98c3797354944d2bf72ce3f469dce64f2aeb8e2c0c968adace560a75d88d0514
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/prepare-release.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/prepare-release.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 1238bd66f2df9878ff4caff3b643f130d7e5c0250b6cd1ff4446aa025fbc7475
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/run-eval.yml: agent shell-out is a designed
-    capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/run-eval.yml: agent shell-out is designed; trust
+    boundary documented in-code.'
   approved: true
 - instance_id: 7f61b1190073741e73665d996806690e25bdd23edc674ccd4771cf415ad379cd
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/run-eval.yml: agent shell-out is a designed
-    capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/run-eval.yml: agent shell-out is designed; trust
+    boundary documented in-code.'
   approved: true
 - instance_id: 4cde214af80800973d439d0341a79440fab6a35e4b0fc60b0cfea3803bee327d
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/server.yml: agent shell-out is a designed
-    capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/server.yml: agent shell-out is designed; trust boundary
+    documented in-code.'
   approved: true
 - instance_id: 0fc5e501dd5ae0771a6b8b7e2e3140df45c102397a77f098e33959f7914db75c
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/server.yml: agent shell-out is a designed
-    capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/server.yml: agent shell-out is designed; trust boundary
+    documented in-code.'
   approved: true
 - instance_id: af49305bf4a586f78bef771fe1a8c5bb97b4938cef0fdd76660deb8eb7be2fbe
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/todo-management.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/todo-management.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 393951a63e9cbe555d153ca69203feb848a074311b579b7ff7406cc59435a281
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/todo-management.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/todo-management.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: 2a44b4ffb8ab449bc2f1247a3e5f8ccdd72e032e4dbefb31e4a2da08e61911da
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at .github/workflows/version-bump-prs.yml: agent shell-out is
-    a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at .github/workflows/version-bump-prs.yml: agent shell-out is designed;
+    trust boundary documented in-code.'
   approved: true
 - instance_id: f10d230502a5f657e83887e4b14cdaade58979b331d9a25cd7fac603a454671a
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at examples/03_github_workflows/03_todo_management/workflow.yml:
-    agent shell-out is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at examples/03_github_workflows/03_todo_management/workflow.yml: agent
+    shell-out is designed; trust boundary documented in-code.'
   approved: true
 - instance_id: 365383371448d4db059b01b86bc1aabe4d86b4de348e60555a6933f00644a742
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at examples/03_github_workflows/03_todo_management/workflow.yml:
-    agent shell-out is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at examples/03_github_workflows/03_todo_management/workflow.yml: agent
+    shell-out is designed; trust boundary documented in-code.'
   approved: true
 - instance_id: 0212511606ede19680163b847bffb82fb671d628b1961386eebc92283988d2a1
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at examples/03_github_workflows/04_datadog_debugging/workflow.yml:
-    agent shell-out is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at examples/03_github_workflows/04_datadog_debugging/workflow.yml: agent
+    shell-out is designed; trust boundary documented in-code.'
   approved: true
 - instance_id: 361fd52be2c1f0221d9795f834d28f417212866736d7ba20cfaa7cd3512cfdb5
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at examples/03_github_workflows/05_posthog_debugging/workflow.yml:
-    agent shell-out is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at examples/03_github_workflows/05_posthog_debugging/workflow.yml: agent
+    shell-out is designed; trust boundary documented in-code.'
   approved: true
 - instance_id: 59aca3b459569c02e77e6a12f253be0c3f088a19c66c59ea749fd60671e0ccf9
   reason_code: not_exploitable
   rationale: openhands-sdk/openhands/sdk/context/skills/skill.py uses xml.sax.saxutils.escape for OUTPUT
-    escaping only (building the <available_skills> prompt block); no XML parsing, so no XXE surface. Documented
-    in-code.
+    escaping only (building <available_skills>); no XML parsing, no XXE.
   approved: true
 - instance_id: dc149e242551a9962826b674cdc5368f728bea61612bbcb408a5001379a8a7ab
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at openhands-sdk/openhands/sdk/hooks/executor.py: agent shell-out
-    is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at openhands-sdk/openhands/sdk/hooks/executor.py: agent shell-out is
+    designed; trust boundary documented in-code.'
   approved: true
 - instance_id: fa48e55d31d612a204346a077951c37c45cff603a17992f9f910f3a5dfbbf238
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at openhands-sdk/openhands/sdk/hooks/executor.py: agent shell-out
-    is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at openhands-sdk/openhands/sdk/hooks/executor.py: agent shell-out is
+    designed; trust boundary documented in-code.'
   approved: true
 - instance_id: ed8aaf154161964fd3eddb6a467b1c2c1806745e9be1c139a4baea1a8f3e8900
   reason_code: intentional_shell_by_design
-  rationale: 'Tainted-subprocess finding at openhands-tools/openhands/tools/file_editor/utils/shell.py:
-    agent shell-out is a designed capability; trust boundary documented in-code.'
+  rationale: 'Tainted-subprocess at openhands-tools/openhands/tools/file_editor/utils/shell.py: agent
+    shell-out is designed; trust boundary documented in-code.'
   approved: true
 - instance_id: 52de9f12f359bdef375e2cf5c098cef2c6222cfe6901948d0c8d848bdf469598
   reason_code: intentional_shell_by_design
   rationale: openhands-workspace/openhands/workspace/apptainer/workspace.py forwards only operator-allowlisted
-    env keys (self.forward_env) into the Apptainer container; values are operator-intended, not agent
-    output. Documented in-code.
+    env keys into the Apptainer container; operator-intended, not agent output.
   approved: true
+disposition_reason: "Code gate clean (0 CRITICAL, 0 unwaived secrets, R1/R2/R3/R4/R6 all pass; tree clean).\
+  \ HOLD driven only by: (a) 14 unreachable dependency-CVE HIGHs accepted/scheduled; (b) \xA71.10 provenance\
+  \ gate unwired (needs an external CI signing key \u2014 SHIP mechanically unreachable on a producer\
+  \ host by design). Both are FORMALLY ACCEPTED risk decisions, not unresolved defects."
 risk_acceptance:
   decision: SHIP-AT-ENGINE-SCOPE with residual HOLD knowingly accepted
   decided_by: CTO (engine-scope sign-off)
@@ -3590,73 +3584,66 @@ risk_acceptance:
   scope: Ethara-Ai/software-agent-sdk used as an SDK ENGINE (library), not published to public PyPI/GHCR
     under Ethara's name and not run as a public network service.
   gate_disposition: HOLD (honest, gate-computed; not inflated to SHIP)
+  resolved_since_last_signoff:
+  - "Dirty working tree (R3-state) \u2014 CLEARED: audit harness committed (7910aa61), git_dirty=False.\
+    \ Was blocker #1 of 3; now 2 remain."
   accepted_items:
   - id: DEFER-1-litellm
     item: "litellm \u2014 8 HIGH CVEs (auth bypass, SQLi, SSTI, cmd-exec)"
-    why_accepted: "Every CVE is in the litellm PROXY SERVER. This repo uses litellm as a CLIENT LIBRARY\
-      \ only (it calls an LLM endpoint; it does not run the litellm proxy). The vulnerable code paths\
-      \ are not reachable in our process. Additionally litellm is pinned to the Ethara-Ai/litellm git\
-      \ fork for Vertex Express support, so a version constraint cannot move it \u2014 the fix is a fork\
-      \ rebase, not a bump."
-    residual_risk: "Low \u2014 unreachable proxy code; would matter only if Ethara later enables litellm\
-      \ proxy mode."
+    engineering_can_fix: "Partially \u2014 fork rebase only (not a version bump)"
+    why_accepted: "All CVEs are in the litellm PROXY SERVER; we use litellm as a CLIENT LIBRARY (call\
+      \ an LLM endpoint, don't run the proxy) \u2192 unreachable. Pinned to Ethara-Ai/litellm git fork,\
+      \ so a constraint can't move it; fix = fork rebase onto >=1.84.0."
+    residual_risk: "Low \u2014 unreachable proxy code"
     owner: litellm-fork maintainer
-    revisit_trigger: Before enabling any litellm proxy feature; scheduled fork rebase onto >=1.84.0.
+    revisit_trigger: Before enabling litellm proxy mode; scheduled rebase
   - id: DEFER-2-fastmcp
-    item: "fastmcp \u2014 3 HIGH CVEs (cmd-injection, OAuth confused-deputy, OpenAPI SSRF/path-traversal)"
-    why_accepted: "All three CVEs are in the OpenAPI provider and OAuth proxy components. This repo imports\
-      \ only fastmcp.mcp_config.MCPConfig and the MCP Client \u2014 never those components. fastmcp 3.x\
-      \ (the fix) is an API-breaking major that moves fastmcp.mcp_config and breaks the SDK's imports;\
-      \ it is intentionally capped <3 to prevent a silent build-break."
-    residual_risk: "Low \u2014 vulnerable components not imported."
+    item: "fastmcp \u2014 3 HIGH CVEs (cmd-injection, OAuth confused-deputy, OpenAPI SSRF)"
+    engineering_can_fix: "Yes but breaking \u2014 3.x migration required"
+    why_accepted: CVEs are in the OpenAPI provider / OAuth proxy; we import only MCPConfig + the MCP Client.
+      3.x (the fix) moves fastmcp.mcp_config and breaks skill.py; capped <3 to prevent a silent build-break.
+    residual_risk: "Low \u2014 vulnerable components not imported"
     owner: SDK maintainers
-    revisit_trigger: Coordinated fastmcp 3.x migration (update import paths, retest MCP client), then
-      lift the <3 cap.
+    revisit_trigger: Coordinated fastmcp 3.x migration, then lift <3 cap
   - id: DEFER-3-lupa
-    item: "lupa \u2014 1 HIGH CVE (Lua sandbox escape / RCE)"
-    why_accepted: "lupa is NOT imported in any source file. It is pulled transitively by fakeredis[lua]\
-      \ (test-only Redis Lua emulation) and never runs in product code. No fixed version is published\
-      \ upstream \u2014 there is nothing to bump to."
-    residual_risk: "None in production \u2014 test-infra only, unreachable."
+    item: "lupa \u2014 1 HIGH CVE (Lua sandbox escape/RCE)"
+    engineering_can_fix: "No \u2014 no upstream fix exists"
+    why_accepted: Not imported in source; transitive via fakeredis[lua] (test-only). No patched release
+      published upstream.
+    residual_risk: "None in prod \u2014 test-infra only"
     owner: SDK maintainers
-    revisit_trigger: When lupa publishes a patched release, or if a test starts requiring Redis EVAL (then
-      drop the [lua] extra).
+    revisit_trigger: lupa ships a patch, or drop the [lua] extra
   - id: DEFER-4-diskcache
-    item: "diskcache \u2014 1 HIGH CVE (unsafe pickle deserialization)"
-    why_accepted: diskcache is NOT imported in source (transitive). The pickle risk requires attacker-controlled
-      cache contents, which is not the case in our usage. No fixed version is published upstream.
-    residual_risk: "None \u2014 transitive, unreachable, no attacker-controlled cache input."
+    item: "diskcache \u2014 1 HIGH CVE (unsafe pickle)"
+    engineering_can_fix: "No \u2014 no upstream fix exists"
+    why_accepted: Not imported in source (transitive); exploit needs attacker-controlled cache contents,
+      which we don't have. No patch upstream.
+    residual_risk: "None \u2014 transitive, unreachable"
     owner: SDK maintainers
-    revisit_trigger: When diskcache ships a patched release.
+    revisit_trigger: diskcache ships a patch
   - id: DEFER-5-pytest
-    item: "pytest \u2014 1 HIGH CVE (vulnerable tmpdir handling)"
-    why_accepted: "pytest is a DEV/TEST-only dependency \u2014 it never ships to a user or runs in production.\
-      \ The tmpdir issue is a local-developer concern. The fix (9.0.3) is a MAJOR version bump that risks\
-      \ breaking the existing suite; the cure is riskier than the dev-only disease."
-    residual_risk: "Negligible \u2014 dev-machine only, never in product."
+    item: "pytest \u2014 1 HIGH CVE (tmpdir handling)"
+    engineering_can_fix: "Yes but risky \u2014 major bump to 9.0.3"
+    why_accepted: "Dev/test-only \u2014 never ships, never in product. Fix is a major version bump that\
+      \ risks breaking the suite."
+    residual_risk: "Negligible \u2014 dev-machine only"
     owner: SDK maintainers
-    revisit_trigger: Dedicated pytest 9.x upgrade ticket when there is time to fix the fallout.
+    revisit_trigger: Dedicated pytest 9.x upgrade ticket
   - id: DEFER-6-provenance-gate
-    item: "\xA71.10 provenance gate unwired (D-COVERAGE-GAP)"
-    why_accepted: The signed artifact-closure manifest + trusted-run-environment are required only for
-      a cryptographic SHIP. At engine-scope (library use, no public release under Ethara's name) self-attested
-      evidence is acceptable. Wiring it is optional Task 7.
-    residual_risk: Acceptable at engine-scope; the audit evidence is self-attested rather than signer-chained.
-    owner: Security/platform
-    revisit_trigger: Before any public release that needs a true SHIP, or if the audit must be third-party-verifiable.
+    item: "\xA71.10 provenance gate unsigned (Trusted-Evidence Axiom)"
+    engineering_can_fix: "Not product code \u2014 CI/secrets task"
+    why_accepted: The gate is IMPLEMENTED (provenance.py) and wired; what's missing is an external AUDIT_TRUST_ROOT_KEY
+      (a CI/KMS secret the producer cannot mint). On a producer-controlled host SHIP is mechanically unreachable
+      BY DESIGN; self-attested evidence is acceptable at engine-scope.
+    residual_risk: Acceptable at engine-scope (evidence self-attested, not signer-chained)
+    owner: Security/platform (CI)
+    revisit_trigger: Run audit in CI with AUDIT_TRUST_ROOT_KEY for a true SHIP
   - id: DEFER-7-container-pypi-provenance
-    item: "CRUCIBLE-7 \u2014 container lint + GHCR/PyPI publish provenance (22 hadolint MEDIUM + unsigned\
-      \ publish)"
-    why_accepted: 'Engine-scope: not publishing under Ethara''s name, not running agent-server as a public
-      network service. These surfaces do not cross a trust boundary at current scope.'
-    residual_risk: None at engine-scope.
+    item: CRUCIBLE-7 container lint + GHCR/PyPI publish provenance (22 hadolint MED + unsigned publish)
+    engineering_can_fix: "Yes \u2014 pipeline work, only when publishing"
+    why_accepted: "Engine-scope: not publishing under Ethara's name, not a network service \u2192 no trust\
+      \ boundary crossed."
+    residual_risk: None at engine-scope
     owner: Release engineering
-    revisit_trigger: 'ESCALATES TO BLOCK before any public PyPI/GHCR release under Ethara''s name (re-scope
-      + re-sign flips these to required: hadolint+trivy image scan, SBOM, sigstore signing).'
-  - id: ACCEPT-dirty-tree
-    item: R3-state dirty working tree
-    why_accepted: 'Mechanical, not a defect: git status counts the untracked audit/ harness. Clears the
-      moment the harness is committed. Not a code-quality signal.'
-    residual_risk: None.
-    owner: Committer
-    revisit_trigger: Auto-clears on committing the audit harness.
+    revisit_trigger: ESCALATES TO BLOCK before any public PyPI/GHCR release under Ethara's name (hadolint+trivy
+      image scan, SBOM, sigstore signing)

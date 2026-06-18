@@ -1,22 +1,33 @@
 # CRUCIBLE Audit Report — Ethara-Ai/software-agent-sdk
 
-**Disposition: 🟡 HOLD — formally accepted (SHIP-at-engine-scope)**
-**Target:** Ethara-Ai/software-agent-sdk (fork of OpenHands/software-agent-sdk) · **Git SHA:** `64a037fd…` (post-remediation commit) · **Scope digest:** `3d419142…`
-**Gate:** `uv run --project audit audit verify --findings findings.yaml --context audit/evidence.yaml`
+**Disposition: 🟡 HOLD — formally accepted (SHIP-at-engine-scope) · GATE PASSES (exit 0)**
+**Target:** Ethara-Ai/software-agent-sdk (fork of OpenHands/software-agent-sdk) · **Git SHA:** `7910aa61…` (clean tree) · **Scope digest:** `3d419142…`
+**Gate:** `uv run --project audit audit verify --findings findings.yaml --context audit/evidence.yaml` → **exit 0**
 
-> A green gate means *"the report is internally honest, survives mechanical cross-checks, and every required CRITICAL-capable instrument ran, parsed, and surfaced no unacknowledged CRITICAL."* It does NOT mean the deliverable is correct. We resolved the complete BLOCK. The residual HOLD is **knowingly accepted by the CTO at engine-scope** — see "Risk acceptance" below. We deliberately did NOT inflate the disposition to SHIP: the gate computes HOLD, and an honest HOLD-with-documented-acceptance is the correct, defensible posture.
+> A green gate means *"the report is internally honest, survives mechanical cross-checks, and every required CRITICAL-capable instrument ran, parsed, and surfaced no unacknowledged CRITICAL."* It does NOT mean the deliverable is correct. **All 8 verifier rules now PASS** (the dirty-tree blocker cleared when the harness was committed). The disposition is an honest, gate-**agreed** HOLD: capped by coverage gaps that the CTO has **formally accepted** at engine-scope — not by any failing rule. We did NOT inflate to SHIP: a true SHIP is mechanically reserved for a CI run with an external signing key (see DEFER-6).
+
+---
+
+## Status since last sign-off: blocker #1 of 3 CLEARED → 2 remain
+
+| Blocker | Was | Now |
+|---|---|---|
+| **Dirty working tree** (R3-state) | ❌ FAIL | ✅ **CLEARED** — audit harness committed (`7910aa61`), `git_dirty=False`, R3-state = "SHIP-state clean" |
+| **14 HIGH dependency CVEs** | accepted | 🟡 accepted/scheduled (DEFER-1…5) — all unreachable |
+| **§1.10 provenance gate** | unwired | 🟡 implemented; needs external CI key (DEFER-6) |
+
+**Gate verdict:** all rules PASS, **exit 0**. The only thing between this and a literal `SHIP` token is the two accepted items above — both deliberate, both documented.
 
 ---
 
 ## Decision summary (read this first)
 
-The dangerous findings are **resolved** (0 CRITICAL, 0 unwaived secrets, all code-quality rules green). What remains is a small, fully-characterized residue that the CTO has **formally accepted** for engine-scope use:
+The dangerous findings are **resolved** (0 CRITICAL, 0 unwaived secrets, all 8 rules green, clean tree). What remains is a small, fully-characterized residue the CTO has **formally accepted** for engine-scope use:
 
-- **14 HIGH dependency CVEs** — every one is **unreachable in our usage** (proxy-mode-only litellm, un-imported fastmcp components, test-only lupa, transitive diskcache, dev-only pytest). Two have **no upstream fix at all**.
-- **§1.10 provenance gate unwired** — only needed for a *cryptographic* SHIP; self-attested evidence is acceptable at engine-scope.
-- **Dirty working tree** — mechanical (counts the untracked `audit/` harness); clears when the harness is committed.
+- **14 HIGH dependency CVEs** — every one **unreachable in our usage** (proxy-mode-only litellm, un-imported fastmcp components, test-only lupa, transitive diskcache, dev-only pytest). Two (lupa, diskcache) have **no upstream fix at all**.
+- **§1.10 provenance gate** — implemented and wired; a *cryptographic* SHIP requires an external `AUDIT_TRUST_ROOT_KEY` supplied in CI. By design, SHIP is unreachable from a producer-controlled host.
 
-**This is a risk-acceptance posture, not an unresolved-defect posture.** Each accepted item has a justification, an owner, and a trigger that re-opens it (recorded in `findings.yaml → risk_acceptance`). If any trigger fires (e.g. publishing under Ethara's name, enabling litellm proxy), the gate re-escalates.
+**This is a risk-acceptance posture, not an unresolved-defect posture.** Each item has a justification, an owner, an "engineering_can_fix" note, and a trigger that re-opens it (machine record in `findings.yaml → risk_acceptance`).
 
 ---
 
@@ -31,7 +42,7 @@ The dangerous findings are **resolved** (0 CRITICAL, 0 unwaived secrets, all cod
 | 🟡 README SWEBench claim | 1 HIGH | **0** | unverifiable badge removed |
 | Total normalized findings | 433 | **295** | dependency bumps removed ~138 CVE rows |
 
-**Current verifier state:** P-scope ✅ · P-context ✅ · R1 ✅ · R2 ✅ · R3-completed ✅ · R3-state ❌ (untracked harness) · R4 ✅ · R6 ✅. The only non-pass is the dirty tree.
+**Current verifier state:** P-scope ✅ · P-context ✅ · R1 ✅ · R2 ✅ · R3-completed ✅ · R3-state ✅ (SHIP-state clean) · R4 ✅ · R6 ✅. **All 8 rules pass; gate exits 0.** Disposition HOLD is set by the 8 accepted coverage gaps, not by any rule failure.
 
 ---
 
@@ -110,13 +121,13 @@ Formally deferred at engine-scope; **escalates to BLOCK before any public releas
 
 ---
 
-## Remaining caps (what keeps the gate at HOLD, all accepted)
+## Remaining caps (what keeps the gate at HOLD — 2 items, both accepted)
 
-1. **Dirty working tree** (R3-state) — clears when the `audit/` harness is committed.
-2. **14 HIGH dependency CVEs** — accepted/scheduled (DEFER-1…5), all unreachable.
-3. **§1.10 provenance gate unwired** (DEFER-6) — caps a *cryptographic* SHIP only; acceptable at engine-scope.
+1. ✅ ~~Dirty working tree~~ — **CLEARED** (harness committed, R3-state passes).
+2. **14 HIGH dependency CVEs** — accepted/scheduled (DEFER-1…5), all unreachable; 2 have no upstream fix.
+3. **§1.10 provenance gate** (DEFER-6) — implemented + wired; caps a *cryptographic* SHIP only. Needs an external CI signing key; acceptable at engine-scope.
 
-**Posture:** an honest, gate-computed **HOLD with formal CTO risk-acceptance**. We did not chase or fake SHIP — that would be the exact dishonesty the gate exists to catch. A true SHIP becomes available by (a) committing the harness, (b) clearing/rescheduling the dependency CVEs, and (c) wiring the provenance gate.
+**Posture:** an honest, gate-**agreed** **HOLD with formal CTO risk-acceptance** — the gate exits 0, confirming the report survives every mechanical cross-check. We did not chase or fake SHIP — that would be the exact dishonesty the gate exists to catch. A literal SHIP token becomes available by (a) clearing/rescheduling the dependency CVEs and (b) running the audit in CI with `AUDIT_TRUST_ROOT_KEY`.
 
 ---
 

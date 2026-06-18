@@ -3,15 +3,15 @@ generated_by: crucible-audit run
 scope_digest: 3d4191428ec2c6c6971731c05b042347fc2009c0d3677c1fc7a9e68c911ff9ed
 severity_map_digest: cebc1ccefafed50dbaac1f4005a643dfe8665845b7128243d6e9b8c739182505
 recon:
-  timestamp_utc: '2026-06-18T19:30:39.835760+00:00'
+  timestamp_utc: '2026-06-18T20:12:43.125101+00:00'
   os: Darwin
   os_release: 25.5.0
   python_version: 3.14.3
   network_available: true
-  git_sha: 64a037fdab0e4422dc5d0dfb6e3199e23b031036
-  git_dirty: true
+  git_sha: 7910aa6145fe088f3b535f8bfc09b1db07c6af57
+  git_dirty: false
   git_shallow: false
-  git_commit_count: 1166
+  git_commit_count: 1167
   repo_root: /Users/utkarsh/Work/software-agent-sdk
   lockfiles:
   - .opencode/package-lock.json
@@ -27,9 +27,9 @@ recon:
   - openhands-workspace/pyproject.toml
   - pyproject.toml
   loc_by_language:
-    python: 179313
-    yaml: 16918
-    markdown: 5796
+    python: 179151
+    yaml: 17003
+    markdown: 5491
     javascript: 1558
     json: 918
     toml: 445
@@ -120,41 +120,9 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: nonzero_exit
   exit_code: 1
-  duration_sec: 0.056
-  stdout_excerpt: "[\n  {\n    \"cell\": null,\n    \"code\": \"I001\",\n    \"end_location\": {\n   \
-    \   \"column\": 12,\n      \"row\": 9\n    },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py\"\
-    ,\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"\
-    content\": \"import yaml\\n\\n\\n\",\n          \"end_location\": {\n            \"column\": 1,\n\
-    \            \"row\": 11\n          },\n          \"location\": {\n            \"column\": 1,\n  \
-    \          \"row\": 9\n          }\n        }\n      ],\n      \"message\": \"Organize imports\"\n\
-    \    },\n    \"location\": {\n      \"column\": 1,\n      \"row\": 9\n    },\n    \"message\": \"\
-    Import block is un-sorted or un-formatted\",\n    \"noqa_row\": 9,\n    \"severity\": \"error\",\n\
-    \    \"url\": \"https://docs.astral.sh/ruff/rules/unsorted-imports\"\n  },\n  {\n    \"cell\": null,\n\
-    \    \"code\": \"E402\",\n    \"end_location\": {\n      \"column\": 32,\n      \"row\": 99\n    },\n\
-    \    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py\",\n    \"fix\":\
-    \ null,\n    \"location\": {\n      \"column\": 1,\n      \"row\": 99\n    },\n    \"message\": \"\
-    Module level import not at top of file\",\n    \"noqa_row\": 99,\n    \"severity\": \"error\",\n \
-    \   \"url\": \"https://docs.astral.sh/ruff/rules/module-import-not-at-top-of-file\"\n  },\n  {\n \
-    \   \"cell\": null,\n    \"code\": \"I001\",\n    \"end_location\": {\n      \"column\": 32,\n   \
-    \   \"row\": 99\n    },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py\"\
-    ,\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"\
-    content\": \"from collections import Counter\\n\\n\\n\",\n          \"end_location\": {\n        \
-    \    \"column\": 1,\n            \"row\": 100\n          },\n          \"location\": {\n         \
-    \   \"column\": 1,\n            \"row\": 99\n          }\n        }\n      ],\n      \"message\":\
-    \ \"Organize imports\"\n    },\n    \"location\": {\n      \"column\": 1,\n      \"row\": 99\n   \
-    \ },\n    \"message\": \"Import block is un-sorted or un-formatted\",\n    \"noqa_row\": 99,\n   \
-    \ \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unsorted-imports\"\n\
-    \  },\n  {\n    \"cell\": null,\n    \"code\": \"I001\",\n    \"end_location\": {\n      \"column\"\
-    : 32,\n      \"row\": 9\n    },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/.pr/gen_findings.py\"\
-    ,\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"\
-    content\": \"from collections import Counter\\n\\nimport yaml\\n\\n\\n\",\n          \"end_location\"\
-    : {\n            \"column\": 1,\n            \"row\": 11\n          },\n          \"location\": {\n\
-    \            \"column\": 1,\n            \"row\": 8\n          }\n        }\n      ],\n      \"message\"\
-    : \"Organize imports\"\n    },\n    \"location\": {\n      \"column\": 1,\n      \"row\": 8\n    },\n\
-    \    \"message\": \"Import block is un-sorted or un-formatted\",\n    \"noqa_row\": 8,\n    \"severity\"\
-    : \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unsorted-imports\"\n  },\n  {\n   \
-    \ \"cell\": null,\n    \"code\": \"UP042\",\n    \"end_location\": {\n      \"column\": 15,\n    \
-    \  \"row\": 30\n    },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/examples/02_remote_agent_server/06_custom_tool/custom_tools/log_data.py\"\
+  duration_sec: 0.052
+  stdout_excerpt: "[\n  {\n    \"cell\": null,\n    \"code\": \"UP042\",\n    \"end_location\": {\n  \
+    \    \"column\": 15,\n      \"row\": 30\n    },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/examples/02_remote_agent_server/06_custom_tool/custom_tools/log_data.py\"\
     ,\n    \"fix\": {\n      \"applicability\": \"unsafe\",\n      \"edits\": [\n        {\n         \
     \ \"content\": \"from enum import Enum, StrEnum\",\n          \"end_location\": {\n            \"\
     column\": 22,\n            \"row\": 11\n          },\n          \"location\": {\n            \"column\"\
@@ -165,15 +133,46 @@ runs:
     : {\n      \"column\": 7,\n      \"row\": 30\n    },\n    \"message\": \"Class LogLevel inherits from\
     \ both `str` and `enum.Enum`\",\n    \"noqa_row\": 30,\n    \"severity\": \"error\",\n    \"url\"\
     : \"https://docs.astral.sh/ruff/rules/replace-str-enum\"\n  },\n  {\n    \"cell\": null,\n    \"code\"\
-    : \"UP042\",\n    \"end_location\": {\n      \"column\": 28,\n      \"row\": 28\n    },\n    \"fil\n\
-    ...[10580 bytes elided]...\nfilename\": \"/Users/utkarsh/Work/software-agent-sdk/tests/agent_server/test_env_parser.py\"\
+    : \"UP042\",\n    \"end_location\": {\n      \"column\": 28,\n      \"row\": 28\n    },\n    \"filename\"\
+    : \"/Users/utkarsh/Work/software-agent-sdk/openhands-agent-server/openhands/agent_server/models.py\"\
     ,\n    \"fix\": {\n      \"applicability\": \"unsafe\",\n      \"edits\": [\n        {\n         \
     \ \"content\": \"from enum import Enum, StrEnum\",\n          \"end_location\": {\n            \"\
-    column\": 22,\n            \"row\": 16\n          },\n          \"location\": {\n            \"column\"\
-    : 1,\n            \"row\": 16\n          }\n        },\n        {\n          \"content\": \"(StrEnum)\"\
-    ,\n          \"end_location\": {\n            \"column\": 28,\n            \"row\": 786\n        \
-    \  },\n          \"location\": {\n            \"column\": 17,\n            \"row\": 786\n        \
-    \  }\n        }\n      ],\n      \"message\": \"Inherit from `enum.StrEnum`\"\n    },\n    \"location\"\
+    column\": 22,\n            \"row\": 3\n          },\n          \"location\": {\n            \"column\"\
+    : 1,\n            \"row\": 3\n          }\n        },\n        {\n          \"content\": \"(StrEnum)\"\
+    ,\n          \"end_location\": {\n            \"column\": 39,\n            \"row\": 28\n         \
+    \ },\n          \"location\": {\n            \"column\": 28,\n            \"row\": 28\n          }\n\
+    \        }\n      ],\n      \"message\": \"Inherit from `enum.StrEnum`\"\n    },\n    \"location\"\
+    : {\n      \"column\": 7,\n      \"row\": 28\n    },\n    \"message\": \"Class ConversationSortOrder\
+    \ inherits from both `str` and `enum.Enum`\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\"\
+    ,\n    \"url\": \"https://docs.astral.sh/ruff/rules/replace-str-enum\"\n  },\n  {\n    \"cell\": null,\n\
+    \    \"code\": \"UP042\",\n    \"end_location\": {\n      \"column\": 21,\n      \"row\": 37\n   \
+    \ },\n    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/openhands-agent-server/openhands/agent_server/models.py\"\
+    ,\n    \"fix\": {\n      \"applicability\": \"unsafe\",\n      \"edits\": [\n        {\n         \
+    \ \"content\": \"from enum import Enum, StrEnum\",\n          \"end_location\": {\n            \"\
+    column\": 22,\n            \"row\": 3\n          },\n          \"location\": {\n            \"column\"\
+    : 1,\n            \"row\": 3\n          }\n        },\n        {\n          \"content\": \"(StrEnum)\"\
+    ,\n          \"end_location\": {\n            \"column\": 32,\n            \"row\": 37\n         \
+    \ },\n          \"location\": {\n            \"column\": 21,\n            \"row\": 37\n          }\n\
+    \        }\n      ],\n      \"message\": \"Inherit from `enum.StrEnum`\"\n    },\n    \"location\"\
+    : {\n      \"column\": 7,\n      \"row\": 37\n    },\n    \"message\": \"Class EventSortOrder inherits\
+    \ from both `str` and `enum.Enum`\",\n    \"noqa_row\": 37,\n    \"severity\": \"error\",\n    \"\
+    url\": \"https://docs.astral.sh/ruff/rules/replace-str-enum\"\n  },\n  {\n    \"cell\": null,\n  \
+    \  \"code\": \"I001\",\n    \"end_location\": {\n      \"column\": 44,\n      \"row\": 34\n    },\n\
+    \    \"filename\": \"/Users/utkarsh/Work/software-agent-sdk/openhands-sdk/openhands/sdk/context/skills/skill.py\"\
+    ,\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"\
+    content\": \"import io\\nimport json\\nimport re\\nfrom pathlib import Path\\nfrom typing import Annotated,\
+    \ ClassVar, Literal, Union\\n\\n# xml.sax.saxutils.escape is used ONLY to ESCAPE output when building\
+    \ the\\n# <available_skills> prompt block (see generate_skills_xml below). There is no\\n# XML PARSING\
+    \ here, so there is no XXE/defused-xml surface. CRUCIBLE waiver:\\n# not_exploitable (output-escaping\
+    \ only, no parser).\\nfrom xml.sax.saxutils import (\\n    es\n...[7785 bytes elided]...\nfilename\"\
+    : \"/Users/utkarsh/Work/software-agent-sdk/tests/agent_server/test_env_parser.py\",\n    \"fix\":\
+    \ {\n      \"applicability\": \"unsafe\",\n      \"edits\": [\n        {\n          \"content\": \"\
+    from enum import Enum, StrEnum\",\n          \"end_location\": {\n            \"column\": 22,\n  \
+    \          \"row\": 16\n          },\n          \"location\": {\n            \"column\": 1,\n    \
+    \        \"row\": 16\n          }\n        },\n        {\n          \"content\": \"(StrEnum)\",\n\
+    \          \"end_location\": {\n            \"column\": 28,\n            \"row\": 786\n          },\n\
+    \          \"location\": {\n            \"column\": 17,\n            \"row\": 786\n          }\n \
+    \       }\n      ],\n      \"message\": \"Inherit from `enum.StrEnum`\"\n    },\n    \"location\"\
     : {\n      \"column\": 7,\n      \"row\": 786\n    },\n    \"message\": \"Class SampleEnum inherits\
     \ from both `str` and `enum.Enum`\",\n    \"noqa_row\": 786,\n    \"severity\": \"error\",\n    \"\
     url\": \"https://docs.astral.sh/ruff/rules/replace-str-enum\"\n  },\n  {\n    \"cell\": null,\n  \
@@ -190,9 +189,9 @@ runs:
     \ both `str` and `enum.Enum`\",\n    \"noqa_row\": 9,\n    \"severity\": \"error\",\n    \"url\":\
     \ \"https://docs.astral.sh/ruff/rules/replace-str-enum\"\n  }\n]"
   stderr_excerpt: ''
-  stdout_sha256: 383f3f03a0365c9b463a2b1a3cd2362724a84e9f3594167e2ec299a7b9da331b
+  stdout_sha256: c5b60eb75d70e6426991c13f5ce5337bf4c25083a20126933d136d0902a52369
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-001.stdout.txt
-  stdout_bytes: 16582
+  stdout_bytes: 13787
   parsed_ok: true
   parse_error: null
   blocked_reason: null
@@ -208,23 +207,19 @@ runs:
   status: nonzero_exit
   exit_code: 1
   duration_sec: 0.02
-  stdout_excerpt: 'Would reformat: .pr/apply_waivers.py
-
-    Would reformat: .pr/gen_findings.py
-
-    Would reformat: openhands-sdk/openhands/sdk/context/skills/skill.py
+  stdout_excerpt: 'Would reformat: openhands-sdk/openhands/sdk/context/skills/skill.py
 
     Would reformat: openhands-sdk/openhands/sdk/critic/impl/api/chat_template.py
 
     Would reformat: tests/agent_server/test_conversation_router.py
 
-    5 files would be reformatted, 839 files already formatted
+    3 files would be reformatted, 839 files already formatted
 
     '
   stderr_excerpt: ''
-  stdout_sha256: fa7786d39e96d2e8f8272c735dceb4084365a0626cd0b383a52e4ecc06e4d227
+  stdout_sha256: 7b125bc3c4695554f39fcdebe57246eedc2780c543bef69d9e55ae5fcef50bc1
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-002.stdout.txt
-  stdout_bytes: 339
+  stdout_bytes: 266
   parsed_ok: true
   parse_error: null
   blocked_reason: null
@@ -244,8 +239,8 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: nonzero_exit
   exit_code: 1
-  duration_sec: 1.432
-  stdout_excerpt: "{\n  \"errors\": [],\n  \"generated_at\": \"2026-06-18T19:30:44Z\",\n  \"metrics\"\
+  duration_sec: 1.44
+  stdout_excerpt: "{\n  \"errors\": [],\n  \"generated_at\": \"2026-06-18T20:12:47Z\",\n  \"metrics\"\
     : {\n    \"_totals\": {\n      \"CONFIDENCE.HIGH\": 186,\n      \"CONFIDENCE.LOW\": 1,\n      \"CONFIDENCE.MEDIUM\"\
     : 6,\n      \"CONFIDENCE.UNDEFINED\": 0,\n      \"SEVERITY.HIGH\": 5,\n      \"SEVERITY.LOW\": 176,\n\
     \      \"SEVERITY.MEDIUM\": 12,\n      \"SEVERITY.UNDEFINED\": 0,\n      \"loc\": 42271,\n      \"\
@@ -311,7 +306,7 @@ runs:
     \   \"more_info\": \"https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html\",\n\
     \      \"test_id\": \"B110\",\n      \"test_name\": \"try_except_pass\"\n    }\n  ]\n}"
   stderr_excerpt: ''
-  stdout_sha256: 87c2d758efd821dcecccfbb45665f733703c04ae5974b59403567cf6de45884a
+  stdout_sha256: 5f3e107863ff47c446278ff0b8487cec8981461faae9022804bf2c824b346e11
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-003.stdout.txt
   stdout_bytes: 285450
   parsed_ok: true
@@ -337,7 +332,7 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 8.933
+  duration_sec: 8.505
   stdout_excerpt: '{"version":"1.167.0","results":[{"check_id":"yaml.github-actions.security.run-shell-injection.run-shell-injection","path":".github/actions/pr-review/action.yml","start":{"line":96,"col":11,"offset":3332},"end":{"line":120,"col":2,"offset":4413},"extra":{"message":"Using
     variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker
     to inject their own code into the runner. This would allow them to steal secrets and code. `github`
@@ -361,22 +356,22 @@ runs:
     a dynamic value being used with urllib. urllib supports ''file://'' schemes, so a dynamic value controlled
     by a malicious actor may allow them to read arbitrary files. Audit uses of urllib calls to en
 
-    ...[114452 bytes elided]...
+    ...[114868 bytes elided]...
 
-    ming taint analysis at examples/03_github_workflows/05_posthog_debugging/posthog_debugging.py:238:4
-    [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"examples/03_github_workflows/05_posthog_debugging/posthog_debugging.py","start":{"line":238,"col":5,"offset":7296},"end":{"line":238,"col":25,"offset":7316}}},{"error_type":"Fixpoint
-    timeout","severity":"warn","message":"Fixpoint timeout while performing taint analysis at openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py:689:4
+    point timeout while performing taint analysis at openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py:689:4
     [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py","start":{"line":689,"col":5,"offset":22633},"end":{"line":689,"col":51,"offset":22679}}},{"error_type":"Fixpoint
     timeout","severity":"warn","message":"Fixpoint timeout while performing taint analysis at openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py:995:4
     [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"openhands-sdk/openhands/sdk/llm/mixins/fn_call_converter.py","start":{"line":995,"col":5,"offset":35621},"end":{"line":995,"col":51,"offset":35667}}},{"error_type":"Fixpoint
+    timeout","severity":"warn","message":"Fixpoint timeout while performing taint analysis at scripts/event_sourcing_benchmarks/bench_persist_latency.py:65:4
+    [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"scripts/event_sourcing_benchmarks/bench_persist_latency.py","start":{"line":65,"col":5,"offset":1740},"end":{"line":65,"col":9,"offset":1744}}},{"error_type":"Fixpoint
     timeout","severity":"warn","message":"Fixpoint timeout while performing taint analysis at scripts/event_sourcing_benchmarks/bench_replay_and_recovery.py:65:4
-    [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"scripts/event_sourcing_benchmarks/bench_replay_and_recovery.py","start":{"line":65,"col":5,"offset":1886},"end":{"line":65,"col":34,"offset":1915}}}],"prefiltering":{"project_level_time":0.0,"file_level_time":0.0,"rules_with_project_prefilters_ratio":0.0,"rules_with_file_prefilters_ratio":0.9775721030243537,"rules_selected_ratio":0.05470948441078857,"rules_matched_ratio":0.05470948441078857},"targets":[],"total_bytes":0,"max_memory_bytes":1751405568},"engine_requested":"OSS","skipped_rules":[],"profiling_results":[]}
+    [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]","location":{"path":"scripts/event_sourcing_benchmarks/bench_replay_and_recovery.py","start":{"line":65,"col":5,"offset":1886},"end":{"line":65,"col":34,"offset":1915}}}],"prefiltering":{"project_level_time":0.0,"file_level_time":0.0,"rules_with_project_prefilters_ratio":0.0,"rules_with_file_prefilters_ratio":0.9775296737996561,"rules_selected_ratio":0.054808424257802586,"rules_matched_ratio":0.054808424257802586},"targets":[],"total_bytes":0,"max_memory_bytes":1483568640},"engine_requested":"OSS","skipped_rules":[],"profiling_results":[]}
 
     '
   stderr_excerpt: ''
-  stdout_sha256: c7e5c196db9f8e11412139c5bb35bbf74cbe8be4bb1e85790008acaac1702c45
+  stdout_sha256: fd20eaa12ecc261987f5d47311acf5be420727d977f1c82964506e7a2124e73b
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-004.stdout.txt
-  stdout_bytes: 120452
+  stdout_bytes: 120868
   parsed_ok: true
   parse_error: null
   blocked_reason: null
@@ -394,14 +389,14 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 2.31
-  stdout_excerpt: '{"version":"1.167.0","results":[],"errors":[],"paths":{"scanned":["openhands-agent-server/openhands/agent_server/vscode_extensions/openhands-settings/extension.js"]},"time":{"rules":[],"rules_parse_time":0.06014513969421387,"profiling_times":{"config_time":0.25443506240844727,"core_time":0.8756058216094971,"ignores_time":0.00016808509826660156,"total_time":1.1387031078338623},"parsing_time":{"total_time":0.0,"per_file_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_files":[]},"scanning_time":{"total_time":0.0006029605865478516,"per_file_time":{"mean":0.0006029605865478516,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_files":[]},"matching_time":{"total_time":0.0,"per_file_and_rule_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_rules_on_files":[]},"tainting_time":{"total_time":0.0,"per_def_and_rule_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_rules_on_defs":[]},"fixpoint_timeouts":[],"prefiltering":{"project_level_time":0.0,"file_level_time":0.0,"rules_with_project_prefilters_ratio":0.0,"rules_with_file_prefilters_ratio":1.0,"rules_selected_ratio":0.0,"rules_matched_ratio":0.0},"targets":[],"total_bytes":0,"max_memory_bytes":165985856},"engine_requested":"OSS","skipped_rules":[],"profiling_results":[]}
+  duration_sec: 3.178
+  stdout_excerpt: '{"version":"1.167.0","results":[],"errors":[],"paths":{"scanned":["openhands-agent-server/openhands/agent_server/vscode_extensions/openhands-settings/extension.js"]},"time":{"rules":[],"rules_parse_time":0.05584096908569336,"profiling_times":{"config_time":1.2607088088989258,"core_time":0.8122501373291016,"ignores_time":0.00010323524475097656,"total_time":2.0803709030151367},"parsing_time":{"total_time":0.0,"per_file_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_files":[]},"scanning_time":{"total_time":0.0005939006805419922,"per_file_time":{"mean":0.0005939006805419922,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_files":[]},"matching_time":{"total_time":0.0,"per_file_and_rule_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_rules_on_files":[]},"tainting_time":{"total_time":0.0,"per_def_and_rule_time":{"mean":0.0,"std_dev":0.0},"very_slow_stats":{"time_ratio":0.0,"count_ratio":0.0},"very_slow_rules_on_defs":[]},"fixpoint_timeouts":[],"prefiltering":{"project_level_time":0.0,"file_level_time":0.0,"rules_with_project_prefilters_ratio":0.0,"rules_with_file_prefilters_ratio":1.0,"rules_selected_ratio":0.0,"rules_matched_ratio":0.0},"targets":[],"total_bytes":0,"max_memory_bytes":167296576},"engine_requested":"OSS","skipped_rules":[],"profiling_results":[]}
 
     '
   stderr_excerpt: ''
-  stdout_sha256: 1e656e13abad96b35c186b30ec2d490193e49cc025547771665827e5820fa24d
+  stdout_sha256: bb8002ea4d6053ddc9b9322f840b4126300a321d2a5fe46d4aab14d9dcc4c4fa
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-005.stdout.txt
-  stdout_bytes: 1412
+  stdout_bytes: 1411
   parsed_ok: true
   parse_error: null
   blocked_reason: null
@@ -415,7 +410,7 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 5.969
+  duration_sec: 18.552
   stdout_excerpt: '{"dependencies": [{"name": "annotated-doc", "version": "0.0.4", "vulns": []}, {"name":
     "annotated-types", "version": "0.7.0", "vulns": []}, {"name": "anyio", "version": "4.14.0", "vulns":
     []}, {"name": "attrs", "version": "26.1.0", "vulns": []}, {"name": "bandit", "version": "1.9.4", "vulns":
@@ -494,7 +489,7 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: nonzero_exit
   exit_code: 1
-  duration_sec: 2.679
+  duration_sec: 2.797
   stdout_excerpt: "{\n  \"results\": [\n    {\n      \"source\": {\n        \"path\": \"/Users/utkarsh/Work/software-agent-sdk/uv.lock\"\
     ,\n        \"type\": \"lockfile\"\n      },\n      \"packages\": [\n        {\n          \"package\"\
     : {\n            \"name\": \"diskcache\",\n            \"version\": \"5.6.3\",\n            \"ecosystem\"\
@@ -566,7 +561,7 @@ runs:
 
     Scanned /Users/utkarsh/Work/software-agent-sdk/uv.lock file and found 417 packages
 
-    End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 23.944708ms elapsed, 23.945ms wall
+    End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 24.535625ms elapsed, 24.536ms wall
     time
 
     '
@@ -593,13 +588,13 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 1.161
+  duration_sec: 1.159
   stdout_excerpt: '[]
 
     '
   stderr_excerpt: "\n    \u25CB\n    \u2502\u2572\n    \u2502 \u25CB\n    \u25CB \u2591\n    \u2591  \
-    \  gitleaks\n\n\e[90m1:01AM\e[0m \e[32mINF\e[0m \e[1mscanned ~12413958 bytes (12.41 MB) in 1.14s\e\
-    [0m\n\e[90m1:01AM\e[0m \e[32mINF\e[0m \e[1mno leaks found\e[0m\n"
+    \  gitleaks\n\n\e[90m1:43AM\e[0m \e[32mINF\e[0m \e[1mscanned ~12393510 bytes (12.39 MB) in 1.14s\e\
+    [0m\n\e[90m1:43AM\e[0m \e[32mINF\e[0m \e[1mno leaks found\e[0m\n"
   stdout_sha256: 37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-008.stdout.txt
   stdout_bytes: 3
@@ -623,13 +618,13 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 2.159
+  duration_sec: 2.374
   stdout_excerpt: '[]
 
     '
   stderr_excerpt: "\n    \u25CB\n    \u2502\u2572\n    \u2502 \u25CB\n    \u25CB \u2591\n    \u2591  \
-    \  gitleaks\n\n\e[90m1:01AM\e[0m \e[32mINF\e[0m \e[1m3307 commits scanned.\e[0m\n\e[90m1:01AM\e[0m\
-    \ \e[32mINF\e[0m \e[1mscanned ~24528744 bytes (24.53 MB) in 2.15s\e[0m\n\e[90m1:01AM\e[0m \e[32mINF\e\
+    \  gitleaks\n\n\e[90m1:43AM\e[0m \e[32mINF\e[0m \e[1m3308 commits scanned.\e[0m\n\e[90m1:43AM\e[0m\
+    \ \e[32mINF\e[0m \e[1mscanned ~25438928 bytes (25.44 MB) in 2.36s\e[0m\n\e[90m1:43AM\e[0m \e[32mINF\e\
     [0m \e[1mno leaks found\e[0m\n"
   stdout_sha256: 37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-009.stdout.txt
@@ -649,7 +644,7 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: nonzero_exit
   exit_code: 1
-  duration_sec: 0.181
+  duration_sec: 0.185
   stdout_excerpt: '[{"code":"DL3022","column":1,"file":"openhands-agent-server/openhands/agent_server/docker/Dockerfile","level":"warning","line":20,"message":"`COPY
     --from` should reference a previously defined `FROM` alias"},{"code":"SC2086","column":1,"file":"openhands-agent-server/openhands/agent_server/docker/Dockerfile","level":"info","line":22,"message":"Double
     quote to prevent globbing and word splitting."},{"code":"DL3046","column":1,"file":"openhands-agent-server/openhands/agent_server/docker/Dockerfile","level":"warning","line":22,"message":"`useradd`
@@ -698,22 +693,21 @@ runs:
   cwd: /Users/utkarsh/Work/software-agent-sdk
   status: ok
   exit_code: 0
-  duration_sec: 50.346
+  duration_sec: 48.187
   stdout_excerpt: "{\n  \"SchemaVersion\": 2,\n  \"Trivy\": {\n    \"Version\": \"0.71.1\"\n  },\n  \"\
-    ReportID\": \"019edc38-00f5-708c-aad7-ec74612547f5\",\n  \"CreatedAt\": \"2026-06-19T01:01:58.325037+05:30\"\
-    ,\n  \"ArtifactID\": \"sha256:9f494021b0e3e2b1a134a93a8e8ad68721538c6e3a480c8c929c90b176622dc3\",\n\
+    ReportID\": \"019edc5e-abd8-7b90-8f30-7ba4578975f4\",\n  \"CreatedAt\": \"2026-06-19T01:44:12.440759+05:30\"\
+    ,\n  \"ArtifactID\": \"sha256:bdc8f8c4282ac2fb006c38d1f1d3f6b11055307c54279e24759061fe8997e53d\",\n\
     \  \"ArtifactName\": \".\",\n  \"ArtifactType\": \"repository\",\n  \"Metadata\": {\n    \"RepoURL\"\
     : \"https://github.com/Ethara-Ai/software-agent-sdk.git\",\n    \"Branch\": \"main\",\n    \"Commit\"\
-    : \"64a037fdab0e4422dc5d0dfb6e3199e23b031036\",\n    \"CommitMsg\": \"fix(audit): bump CVE deps, add\
-    \ gitleaks allowlist+hook, document shell/crypto trust boundaries\",\n    \"Author\": \"Utkarsh Jain\
-    \ \\u003cutkarsh.jain@ethara.ai\\u003e\",\n    \"Committer\": \"Utkarsh Jain \\u003cutkarsh.jain@ethara.ai\\\
-    u003e\"\n  },\n  \"Results\": [\n    {\n      \"Target\": \".opencode/package-lock.json\",\n     \
-    \ \"Class\": \"lang-pkgs\",\n      \"Type\": \"npm\",\n      \"Packages\": [\n        {\n        \
-    \  \"ID\": \"@opencode-ai/plugin@1.17.7\",\n          \"Name\": \"@opencode-ai/plugin\",\n       \
-    \   \"Identifier\": {\n            \"PURL\": \"pkg:npm/%40opencode-ai/plugin@1.17.7\",\n         \
-    \   \"UID\": \"d1692a066632c2aa\"\n          },\n          \"Version\": \"1.17.7\",\n          \"\
-    Licenses\": [\n            \"MIT\"\n          ],\n          \"Relationship\": \"direct\",\n      \
-    \    \"DependsOn\": [\n            \"@opencode-ai/sdk@1.17.7\",\n            \"effect@4.0.0-beta.74\"\
+    : \"7910aa6145fe088f3b535f8bfc09b1db07c6af57\",\n    \"CommitMsg\": \"fix(audit):  audit harness\"\
+    ,\n    \"Author\": \"Utkarsh Jain \\u003cutkarsh.jain@ethara.ai\\u003e\",\n    \"Committer\": \"Utkarsh\
+    \ Jain \\u003cutkarsh.jain@ethara.ai\\u003e\"\n  },\n  \"Results\": [\n    {\n      \"Target\": \"\
+    .opencode/package-lock.json\",\n      \"Class\": \"lang-pkgs\",\n      \"Type\": \"npm\",\n      \"\
+    Packages\": [\n        {\n          \"ID\": \"@opencode-ai/plugin@1.17.7\",\n          \"Name\": \"\
+    @opencode-ai/plugin\",\n          \"Identifier\": {\n            \"PURL\": \"pkg:npm/%40opencode-ai/plugin@1.17.7\"\
+    ,\n            \"UID\": \"d1692a066632c2aa\"\n          },\n          \"Version\": \"1.17.7\",\n \
+    \         \"Licenses\": [\n            \"MIT\"\n          ],\n          \"Relationship\": \"direct\"\
+    ,\n          \"DependsOn\": [\n            \"@opencode-ai/sdk@1.17.7\",\n            \"effect@4.0.0-beta.74\"\
     ,\n            \"zod@4.1.8\"\n          ],\n          \"Locations\": [\n            {\n          \
     \    \"StartLine\": 89,\n              \"EndLine\": 115\n            }\n          ],\n          \"\
     AnalyzedBy\": \"npm\"\n        },\n        {\n          \"ID\": \"@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4\"\
@@ -743,118 +737,38 @@ runs:
     \           \"UID\": \"b0ce86bbd91d7548\"\n          },\n          \"Version\": \"3.0.4\",\n     \
     \     \"Licenses\": [\n            \"MIT\"\n          ],\n          \"Indirect\": true,\n        \
     \  \"Relationship\": \"indirect\",\n          \"Locations\": [\n            {\n              \"StartLine\"\
-    : 50,\n              \"EndLine\": 62\n            }\n        \n...[53999 bytes elided]...\n      \
-    \   \"Indirect\": true,\n          \"Relationship\": \"indirect\",\n          \"DependsOn\": [\n \
-    \           \"typing-extensions@4.15.0\"\n          ],\n          \"AnalyzedBy\": \"uv\"\n       \
-    \ },\n        {\n          \"ID\": \"urllib3@2.7.0\",\n          \"Name\": \"urllib3\",\n        \
-    \  \"Identifier\": {\n            \"PURL\": \"pkg:pypi/urllib3@2.7.0\",\n            \"UID\": \"6212ec5f36f48ee4\"\
-    \n          },\n          \"Version\": \"2.7.0\",\n          \"Indirect\": true,\n          \"Relationship\"\
-    : \"indirect\",\n          \"AnalyzedBy\": \"uv\"\n        },\n        {\n          \"ID\": \"uvicorn@0.49.0\"\
-    ,\n          \"Name\": \"uvicorn\",\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/uvicorn@0.49.0\"\
-    ,\n            \"UID\": \"bb30efd47f9e65a4\"\n          },\n          \"Version\": \"0.49.0\",\n \
-    \         \"Indirect\": true,\n          \"Relationship\": \"indirect\",\n          \"DependsOn\"\
-    : [\n            \"click@8.1.8\",\n            \"h11@0.16.0\"\n          ],\n          \"AnalyzedBy\"\
-    : \"uv\"\n        },\n        {\n          \"ID\": \"wcmatch@8.5.2\",\n          \"Name\": \"wcmatch\"\
-    ,\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/wcmatch@8.5.2\",\n            \"\
-    UID\": \"8bdb6eb8dcdac55c\"\n          },\n          \"Version\": \"8.5.2\",\n          \"Indirect\"\
-    : true,\n          \"Relationship\": \"indirect\",\n          \"DependsOn\": [\n            \"bracex@2.6\"\
-    \n          ],\n          \"AnalyzedBy\": \"uv\"\n        },\n        {\n          \"ID\": \"wrapt@1.17.3\"\
-    ,\n          \"Name\": \"wrapt\",\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/wrapt@1.17.3\"\
-    ,\n            \"UID\": \"3696f097673782f4\"\n          },\n          \"Version\": \"1.17.3\",\n \
-    \         \"Indirect\": true,\n          \"Relationship\": \"indirect\",\n          \"AnalyzedBy\"\
-    : \"uv\"\n        },\n        {\n          \"ID\": \"zipp@4.1.0\",\n          \"Name\": \"zipp\",\n\
-    \          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/zipp@4.1.0\",\n            \"UID\"\
-    : \"db44afe98429ddc8\"\n          },\n          \"Version\": \"4.1.0\",\n          \"Indirect\": true,\n\
-    \          \"Relationship\": \"indirect\",\n          \"AnalyzedBy\": \"uv\"\n        }\n      ]\n\
-    \    }\n  ]\n}\n"
+    : 50,\n              \"EndLine\": 62\n            }\n          ],\n          \"AnalyzedBy\": \"npm\"\
+    \n        },\n        {\n          \"I\n...[53931 bytes elided]...\n         \"Indirect\": true,\n\
+    \          \"Relationship\": \"indirect\",\n          \"DependsOn\": [\n            \"typing-extensions@4.15.0\"\
+    \n          ],\n          \"AnalyzedBy\": \"uv\"\n        },\n        {\n          \"ID\": \"urllib3@2.7.0\"\
+    ,\n          \"Name\": \"urllib3\",\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/urllib3@2.7.0\"\
+    ,\n            \"UID\": \"6212ec5f36f48ee4\"\n          },\n          \"Version\": \"2.7.0\",\n  \
+    \        \"Indirect\": true,\n          \"Relationship\": \"indirect\",\n          \"AnalyzedBy\"\
+    : \"uv\"\n        },\n        {\n          \"ID\": \"uvicorn@0.49.0\",\n          \"Name\": \"uvicorn\"\
+    ,\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/uvicorn@0.49.0\",\n            \"\
+    UID\": \"bb30efd47f9e65a4\"\n          },\n          \"Version\": \"0.49.0\",\n          \"Indirect\"\
+    : true,\n          \"Relationship\": \"indirect\",\n          \"DependsOn\": [\n            \"click@8.1.8\"\
+    ,\n            \"h11@0.16.0\"\n          ],\n          \"AnalyzedBy\": \"uv\"\n        },\n      \
+    \  {\n          \"ID\": \"wcmatch@8.5.2\",\n          \"Name\": \"wcmatch\",\n          \"Identifier\"\
+    : {\n            \"PURL\": \"pkg:pypi/wcmatch@8.5.2\",\n            \"UID\": \"8bdb6eb8dcdac55c\"\n\
+    \          },\n          \"Version\": \"8.5.2\",\n          \"Indirect\": true,\n          \"Relationship\"\
+    : \"indirect\",\n          \"DependsOn\": [\n            \"bracex@2.6\"\n          ],\n          \"\
+    AnalyzedBy\": \"uv\"\n        },\n        {\n          \"ID\": \"wrapt@1.17.3\",\n          \"Name\"\
+    : \"wrapt\",\n          \"Identifier\": {\n            \"PURL\": \"pkg:pypi/wrapt@1.17.3\",\n    \
+    \        \"UID\": \"3696f097673782f4\"\n          },\n          \"Version\": \"1.17.3\",\n       \
+    \   \"Indirect\": true,\n          \"Relationship\": \"indirect\",\n          \"AnalyzedBy\": \"uv\"\
+    \n        },\n        {\n          \"ID\": \"zipp@4.1.0\",\n          \"Name\": \"zipp\",\n      \
+    \    \"Identifier\": {\n            \"PURL\": \"pkg:pypi/zipp@4.1.0\",\n            \"UID\": \"db44afe98429ddc8\"\
+    \n          },\n          \"Version\": \"4.1.0\",\n          \"Indirect\": true,\n          \"Relationship\"\
+    : \"indirect\",\n          \"AnalyzedBy\": \"uv\"\n        }\n      ]\n    }\n  ]\n}\n"
   stderr_excerpt: ''
-  stdout_sha256: ee62612bcd7d786ec94a926020733b76c9c046f58e00b5d446eaa71ab9eccfef
+  stdout_sha256: e12aa15790e32911323abd6863598a1cab0ec0693d09e087960ad63101054f7c
   stdout_path: /Users/utkarsh/Work/software-agent-sdk/audit/results/artifacts/CMD-011.stdout.txt
-  stdout_bytes: 59999
+  stdout_bytes: 59931
   parsed_ok: true
   parse_error: null
   blocked_reason: null
 normalized_issues:
-- tool: ruff
-  rule_id: I001
-  severity: LOW
-  location_type: source
-  path: /Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py
-  line: 9
-  package: null
-  version: null
-  vuln_id: null
-  advisory_id: null
-  cvss_base: null
-  cvss_vector: null
-  cwe: null
-  tool_native_fingerprint: I001
-  message: Import block is un-sorted or un-formatted
-  normalized_snippet: import block is un-sorted or un-formatted
-  cluster_fingerprint: 055b6a9a04e084670323128293c72a024443172c47ffc6e1d1d8f2e52b797d90
-  issue_instance_id: a95bb6fa910243403911cfa16960d97ebe11aae81e17371d71a8fe2ed824e83d
-  occurrence_ordinal: 0
-  run_id: CMD-001
-- tool: ruff
-  rule_id: E402
-  severity: LOW
-  location_type: source
-  path: /Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py
-  line: 99
-  package: null
-  version: null
-  vuln_id: null
-  advisory_id: null
-  cvss_base: null
-  cvss_vector: null
-  cwe: null
-  tool_native_fingerprint: E402
-  message: Module level import not at top of file
-  normalized_snippet: module level import not at top of file
-  cluster_fingerprint: b063b22183c33387e5a729acb4e44a15a16c644c38bbd81e323710efbf9a0697
-  issue_instance_id: d9a56a84e42a5f5c39d82c76da65366eb313ecf3cd929d1ae7017097b5dcd57b
-  occurrence_ordinal: 0
-  run_id: CMD-001
-- tool: ruff
-  rule_id: I001
-  severity: LOW
-  location_type: source
-  path: /Users/utkarsh/Work/software-agent-sdk/.pr/apply_waivers.py
-  line: 99
-  package: null
-  version: null
-  vuln_id: null
-  advisory_id: null
-  cvss_base: null
-  cvss_vector: null
-  cwe: null
-  tool_native_fingerprint: I001
-  message: Import block is un-sorted or un-formatted
-  normalized_snippet: import block is un-sorted or un-formatted
-  cluster_fingerprint: 055b6a9a04e084670323128293c72a024443172c47ffc6e1d1d8f2e52b797d90
-  issue_instance_id: 9e738321812efb4fcd8a5d4ee4b99994a6f649a72790a2228c48d9fe77a08987
-  occurrence_ordinal: 1
-  run_id: CMD-001
-- tool: ruff
-  rule_id: I001
-  severity: LOW
-  location_type: source
-  path: /Users/utkarsh/Work/software-agent-sdk/.pr/gen_findings.py
-  line: 8
-  package: null
-  version: null
-  vuln_id: null
-  advisory_id: null
-  cvss_base: null
-  cvss_vector: null
-  cwe: null
-  tool_native_fingerprint: I001
-  message: Import block is un-sorted or un-formatted
-  normalized_snippet: import block is un-sorted or un-formatted
-  cluster_fingerprint: 6e5ea803f8216d3def0ddb4b9f7d80c6038d00d80ee7f744c5b925eec884fb0d
-  issue_instance_id: 345944d4ffe8b41e7728912351dc5bb6e63312c4f591d97ca9de5eff324819ab
-  occurrence_ordinal: 0
-  run_id: CMD-001
 - tool: ruff
   rule_id: UP042
   severity: LOW
