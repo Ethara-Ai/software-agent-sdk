@@ -1,0 +1,443 @@
+# CRUCIBLE Audit Scope — OpenHands/software-agent-sdk
+# Phase-0 machine-readable scope artifact. The human reads this YAML directly;
+# there is no separate human-readable scope document (no SCOPE.md).
+# Approve by writing sha256(scope.yaml) into audit/scope.approved.
+schema_version: "2"
+crucible_phase: "0"
+required_policy_version: 1
+generated_by: "CRUCIBLE Phase-0 scoping (read-only)"
+
+audit_target:
+  kind: sdk_engine
+  note: >-
+    This repo is an agent-building SDK + agent-server service (the engine behind
+    a product). It is NOT itself a scored eval/benchmark deliverable bundle.
+    'kind' is an OUTPUT label derived from Phase-0 evidence, never an input gate.
+
+repo:
+  root: /Users/utkarsh/Work/software-agent-sdk
+  name: Ethara-Ai/software-agent-sdk
+  origin_url: https://github.com/Ethara-Ai/software-agent-sdk.git
+  upstream: OpenHands/software-agent-sdk
+  git_sha: c1cdb16aed9912c3c55a94f62c982fd123d050ba
+  branch: main
+  tree_state: clean
+  shallow: false
+  full_history_available: true
+  commit_count: 1165
+  python_loc_approx: 54575
+
+ecosystems:
+  - id: python
+    primary: true
+    target_version: "3.12"
+    evidence: >-
+      5 pyproject.toml (root uv-workspace + openhands-sdk + openhands-tools +
+      openhands-workspace + openhands-agent-server); single uv.lock at root.
+  - id: node
+    primary: false
+    present_trivial: true
+    evidence: >-
+      single package.json at openhands-agent-server/openhands/agent_server/
+      vscode_extensions/openhands-settings/package.json (VSCode-extension
+      settings stub; no real JS app logic).
+  - id: docker
+    primary: false
+    evidence: >-
+      2 Dockerfiles (agent_server/docker/Dockerfile +
+      examples/02_remote_agent_server/06_custom_tool/Dockerfile); CI builds
+      multi-arch images and pushes to ghcr.io/openhands/agent-server.
+
+product_types:
+  - python_library_sdk
+  - http_service_agent_server
+  - ci_published_container_images
+  - pypi_published_packages
+
+# ---------------------------------------------------------------------------
+# Deliverable surfaces. Absence is a scoping RESULT, stated explicitly.
+# ---------------------------------------------------------------------------
+surfaces:
+  - id: harness_runner_code
+    status: PRESENT_AS_CODE
+    paths:
+      - tests/integration/run_infer.py
+      - openhands-sdk/openhands/sdk/conversation/
+      - openhands-sdk/openhands/sdk/agent/
+    note: >-
+      Production agent loop (Conversation.run / Agent.step) plus a multi-rollout
+      test runner (run_infer.py). Reviewed as code (SAST), not as a scored bundle.
+    code_review_instruments: [bandit, semgrep_pinned]
+    disposition_cap_on_absent: NONE
+
+  - id: python_code
+    status: PRESENT
+    paths:
+      - openhands-sdk/
+      - openhands-tools/
+      - openhands-workspace/
+      - openhands-agent-server/
+    existing_instruments:
+      - ruff
+      - pyright(standard)
+      - pycodestyle
+      - pytest+cov(gate disabled --cov-fail-under=0)
+    required_instruments: [bandit, semgrep_pinned, pip_audit, osv_scanner]
+    disposition_cap_on_absent: HOLD
+
+  - id: node_code
+    status: PRESENT_TRIVIAL
+    paths:
+      - openhands-agent-server/openhands/agent_server/vscode_extensions/openhands-settings/package.json
+    required_instruments: [semgrep_node]
+    priority: low
+    disposition_cap_on_absent: HOLD
+
+  - id: agent_trajectories
+    status: PRESENT_AS_CODE
+    paths:
+      - openhands-sdk/openhands/sdk/conversation/persistence_const.py
+      - openhands-sdk/openhands/sdk/event/
+    reward_location: >-
+      openhands.sdk.critic.CriticResult.score (float 0..1, in-memory, part of
+      the normal Event stream). NO persisted reward file, NO HMAC/signature.
+    who_can_write_reward: >-
+      Same process that runs the loop; in-memory only. Not an agent-writable
+      persisted reward path for this target.
+    code_review_instruments: [bandit, semgrep_pinned]
+    disposition_cap_on_absent: NONE
+    note: Real shipped schema; no scored-content cap. No committed trajectory instances.
+
+  - id: environment_dataset
+    status: NOT_APPLICABLE
+    detector_evidence: >-
+      Zero shipped parquet/csv/jsonl scored datasets. SWE-bench Verified traces
+      (~227MB) are downloaded externally by scripts/event_sourcing_benchmarks/
+      (NOT committed). Only committed 'data' = tests/fixtures/llm_data/*
+      (~492KB recorded LLM completions for unit tests; no scoring ground-truth)
+      + tests/fixtures/tokenizers/qwen3 config.
+    required_instruments: []
+    disposition_cap_on_absent: NONE
+
+  - id: multimodal_scored_media
+    status: NOT_APPLICABLE
+    detector_evidence: >-
+      No shipped scored media. Only UI chrome (favicon-*.png, wallpaper.svg).
+      Vision capability exists in code but t08_image_file_viewing.py downloads
+      logo.png at runtime.
+    required_instruments: []
+    disposition_cap_on_absent: NONE
+
+  - id: rubrics_grading_specs
+    status: CAPABILITY_ONLY
+    paths:
+      - openhands-sdk/openhands/sdk/critic/
+    evidence: >-
+      SDK ships openhands.sdk.critic.* (CriticBase.evaluate(events)->
+      CriticResult(score:float)). APIBasedCritic score fed back into the loop as
+      prompt text. Runtime capability, not a scored-trial deliverable.
+    code_review_instruments: [bandit, semgrep_pinned]
+    conditional_obligation:
+      instrument: reward_provenance_check
+      activates_when: audit target is an eval-output bundle (persisted per-trial reward records)
+      disposition_cap_when_active: BLOCK
+    disposition_cap_on_absent: NONE_FOR_THIS_TARGET
+    downstream_inheritance: OpenHands/evaluation inherits the reward-provenance obligation
+
+  - id: rollout_orchestration_capability
+    status: CAPABILITY_ONLY
+    evidence: >-
+      Core loop is production code. Multi-rollout batch runner exists ONLY as
+      test harness tests/integration/run_infer.py writing
+      tests/integration/outputs/.../results.json (GITIGNORED, never shipped).
+    code_review_instruments: [bandit, semgrep_pinned]
+    conditional_obligation:
+      instrument: rollout_integrity_check
+      activates_when: audit target reports final aggregated metrics from persisted trials
+      disposition_cap_when_active: BLOCK
+    disposition_cap_on_absent: NONE_FOR_THIS_TARGET
+    downstream_inheritance: OpenHands/evaluation inherits the rollout-integrity obligation
+
+  - id: client_deliverables
+    status: NOT_APPLICABLE
+    detector_evidence: >-
+      No generated customer reports/exports committed. Built wheels/images are
+      produced in CI, not stored in-tree.
+    required_instruments: []
+    disposition_cap_on_absent: NONE
+
+  - id: mock_synthetic_data
+    status: PRESENT
+    paths:
+      - tests/fixtures/llm_data/
+      - tests/fixtures/tokenizers/
+    note: >-
+      Unit-test scaffolding (recorded LLM completions, tokenizer config). Risk is
+      leakage into a 'real' deliverable; none ships here. Reviewed as fixtures.
+    required_instruments: []
+    disposition_cap_on_absent: NONE
+
+  - id: test_suite
+    status: PRESENT
+    paths: [tests/]
+    framework: pytest
+    config: pyproject.toml [tool.pytest.ini_options]
+    markers: [asyncio_mode=auto]
+    required_instruments: [pytest]
+    disposition_cap_on_absent: NONE
+
+  - id: container_build
+    status: PRESENT
+    paths:
+      - openhands-agent-server/openhands/agent_server/docker/Dockerfile
+      - examples/02_remote_agent_server/06_custom_tool/Dockerfile
+    required_instruments: [hadolint, trivy_fs]
+    disposition_cap_on_absent: HOLD
+
+  - id: container_publish
+    status: PRESENT
+    evidence: >-
+      CI builds multi-arch and PUSHES to ghcr.io/openhands/agent-server with NO
+      vulnerability scan or provenance attestation (trust boundary crossed).
+    required_instruments: [trivy_image, image_provenance_attestation]
+    disposition_cap_on_absent: HOLD
+    escalation: BLOCK if the published image is referenced in a release-disposition deliverable
+
+  - id: pypi_supply_chain_provenance
+    status: PRESENT
+    evidence: >-
+      CI pypi-release runs uv build x4 + uv publish with NO sigstore/SLSA/cosign/
+      SBOM/attestation. Under the Trusted-Evidence Axiom, signed provenance is a
+      SHIP precondition.
+    required_instruments: [sbom_generation, build_provenance_signing]
+    disposition_cap_on_absent: HOLD
+    escalation: BLOCK for a release-disposition audit target
+
+  - id: git_history
+    status: PRESENT
+    evidence: full history present, clean tree, non-shallow, 1165 commits
+    required_instruments: [gitleaks_full_history, gitleaks_working_tree]
+    disposition_cap_on_absent: HOLD
+
+  - id: report_claim_readme_score
+    status: RESOLVED
+    evidence: >-
+      README previously advertised 'SWEBench 77.6' (badge linking a Google
+      Sheet) with no reproducible pointer. The badge was REMOVED (2026-06-18),
+      eliminating the untraceable claim. report_claim_traceability_check now
+      finds no SWEBench claim in README (clean).
+    obligation: narrow report-claim reconciliation of the README performance claim ONLY
+    required_instruments: [report_claim_traceability_check]
+    resolution: >-
+      Claim removed rather than traced; an unverifiable number is worse than no
+      number. Instrument still runs and confirms zero claims (no silence).
+    disposition_cap_on_absent: HOLD
+    note: Does NOT pull rollout-integrity or reward-provenance into this repo.
+
+# ---------------------------------------------------------------------------
+# Required instruments DERIVED from surfaces (the producer does NOT choose this).
+# Each maps to a Tool capability contract in tools.py.
+# ---------------------------------------------------------------------------
+required_instruments:
+  - id: ruff
+    ecosystem: python
+    category: hygiene_lint
+    critical_capable: false
+    cap_on_absent: HOLD
+  - id: ruff_format
+    ecosystem: python
+    category: hygiene_format
+    critical_capable: false
+    cap_on_absent: HOLD
+  - id: bandit
+    ecosystem: python
+    category: sast
+    critical_capable: true
+    cap_on_absent: HOLD
+  - id: semgrep_pinned
+    ecosystem: python
+    category: sast_taint
+    critical_capable: true
+    cap_on_absent: HOLD
+    config_policy: >-
+      explicit packs p/owasp-top-ten p/r2c-security-audit p/secrets + vendored
+      .crucible/semgrep ; NEVER --config auto as sole profile ; --metrics=off
+  - id: pip_audit
+    ecosystem: python
+    category: dependency_cve
+    critical_capable: true
+    cap_on_absent: HOLD
+  - id: osv_scanner
+    ecosystem: python
+    category: dependency_cve
+    critical_capable: true
+    cap_on_absent: HOLD
+    target: uv.lock
+  - id: gitleaks_full_history
+    ecosystem: all
+    category: secret_scan
+    critical_capable: true
+    cap_on_absent: HOLD
+    config_policy: full history --log-opts=--all --redact
+  - id: gitleaks_working_tree
+    ecosystem: all
+    category: secret_scan
+    critical_capable: true
+    cap_on_absent: HOLD
+    config_policy: working tree --no-git --redact
+  - id: hadolint
+    ecosystem: docker
+    category: container_lint
+    critical_capable: true
+    cap_on_absent: HOLD
+  - id: trivy_fs
+    ecosystem: docker
+    category: container_cve
+    critical_capable: true
+    cap_on_absent: HOLD
+  - id: report_claim_traceability_check
+    ecosystem: all
+    category: report_claim
+    critical_capable: true
+    cap_on_absent: HOLD
+    scope: README SWEBench 77.6 claim only
+  - id: semgrep_node
+    ecosystem: node
+    category: sast
+    critical_capable: false
+    cap_on_absent: HOLD
+    priority: low
+
+# Conditional instruments: not required for THIS target, BLOCK-capped downstream.
+conditional_instruments:
+  - id: reward_provenance_check
+    activates_when: audit target is an eval-output bundle
+    cap_when_active: BLOCK
+    status_for_this_target: CAPABILITY_ONLY
+  - id: rollout_integrity_check
+    activates_when: audit target reports final aggregated metrics from persisted trials
+    cap_when_active: BLOCK
+    status_for_this_target: CAPABILITY_ONLY
+
+existing_ci_instruments_do_not_duplicate:
+  - ruff(lint+format)
+  - pyright(standard)
+  - pycodestyle
+  - pytest+cov(GATE DISABLED --cov-fail-under=0)
+  - check_sdk_api_breakage.py(Griffe; rel-* only)
+  - check_agent_server_rest_api_breakage.py(oasdiff; rel-* only)
+  - check_deprecations.py(every PR)
+  - check_import_rules.py(layering)
+  - check_tool_registration.py
+  - test-server-schema(OpenAPI swagger-cli validate)
+  - review-thread-gate(GraphQL)
+  - pr-artifacts(.pr/)
+
+# ---------------------------------------------------------------------------
+# Scanner command/config policy. The APPROVED digest binds this argv set; the
+# §1.10 command-integrity check compares actual argv against it. Widening an
+# ignore-list changes the digest and re-triggers sign-off.
+# ---------------------------------------------------------------------------
+scanner_command_config_policy:
+  ignore_allow_list_globs:
+    - "**/.venv/**"
+    - "**/node_modules/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/.git/**"
+    - "**/__pycache__/**"
+    - "**/*.egg-info/**"
+    - "**/.worktrees/**"
+    - "**/audit/results/**"
+  semgrep_forbidden:
+    - "--config auto as sole profile"
+  db_pin_required: [semgrep, trivy, osv_scanner, pip_audit, gitleaks]
+  approved_argv:
+    ruff: "ruff check --output-format json ."
+    ruff_format: "ruff format --check ."
+    bandit: "bandit -r openhands-sdk openhands-tools openhands-workspace openhands-agent-server -f json -q"
+    semgrep_pinned: "semgrep --config p/owasp-top-ten --config p/r2c-security-audit --config p/secrets --config .crucible/semgrep --metrics=off --json ."
+    pip_audit: "pip-audit --format json"
+    osv_scanner: "osv-scanner --lockfile=uv.lock --format=json"
+    gitleaks_full_history: "gitleaks detect --source . --report-format json --redact --log-opts=--all"
+    gitleaks_working_tree: "gitleaks detect --source . --no-git --report-format json --redact"
+    hadolint: "hadolint --format json <dockerfile>"
+    trivy_fs: "trivy fs --format json --quiet ."
+    semgrep_node: "semgrep --config p/javascript --metrics=off --json <node_dir>"
+
+# ---------------------------------------------------------------------------
+# Declared coverage gaps. Each is a FINDING, never a silence.
+# ---------------------------------------------------------------------------
+coverage_gaps:
+  - id: python_sast_absent
+    detail: No bandit/semgrep/CodeQL anywhere in repo or CI.
+    cap: HOLD
+  - id: dependency_cve_scan_absent
+    detail: No pip-audit/osv-scanner; only manual constraint-dependencies CVE pins.
+    cap: HOLD
+  - id: secret_scan_absent
+    detail: No gitleaks/detect-secrets in pre-commit or CI.
+    cap: HOLD
+  - id: container_scan_absent
+    detail: Images built and pushed to GHCR unscanned (no hadolint/trivy).
+    cap: HOLD
+    deferred: >-
+      CRUCIBLE-7 DEFERRED per CTO engine-scope sign-off (not publishing under
+      Ethara's name). Escalates to BLOCK before any public GHCR release.
+  - id: published_image_provenance_absent
+    detail: Multi-arch GHCR push with no provenance attestation.
+    cap: HOLD
+    deferred: >-
+      CRUCIBLE-7 DEFERRED per CTO engine-scope sign-off. Escalates to BLOCK
+      before any public GHCR release under Ethara's name.
+  - id: pypi_supply_chain_provenance_absent
+    detail: uv publish with no sigstore/SLSA/SBOM/signing.
+    cap: HOLD
+    deferred: >-
+      CRUCIBLE-7 DEFERRED per CTO engine-scope sign-off. Escalates to BLOCK
+      before any public PyPI release under Ethara's name.
+  - id: provenance_gate_unwired
+    detail: >-
+      §1.10 signed artifact-closure manifest is spec-only (D-COVERAGE-GAP).
+      Trusted-run-environment + signer chain not yet wired, so SHIP is capped.
+    cap: HOLD
+  - id: coverage_gate_disabled
+    detail: pytest runs with --cov-fail-under=0 (coverage reported, not gated).
+    cap: NONE
+  - id: no_security_md
+    detail: No SECURITY.md / vulnerability disclosure policy.
+    cap: NONE
+
+unclassified_artifacts: []
+
+ambiguities:
+  - id: engine_vs_release_scope
+    resolution: >-
+      CTO sign-off (2026-06-18): target is the SDK ENGINE on the Ethara-Ai fork,
+      NOT release artifacts. Publishing to PyPI/GHCR under Ethara's name = NO;
+      hosting agent-server as a network service = NO; fork carries no new
+      vendored secrets / auth endpoints / Dockerfiles beyond upstream = confirmed
+      via recon. Therefore container-publish + PyPI-provenance + shell-injection
+      remain HOLD caps (not escalated to BLOCK). Re-scope + re-sign if any answer
+      flips to YES.
+    detail: >-
+      This scope treats the target as the SDK ENGINE (HOLD-capped). If the
+      target is RELEASE ARTIFACTS (PyPI wheels / GHCR images with a SHIP
+      disposition), container-publish + PyPI-provenance + the conditional eval
+      caps escalate to BLOCK.
+  - id: readme_swebench_granularity
+    detail: >-
+      'SWEBench 77.6' scoped as a narrow HOLD-capped claim-traceability
+      obligation satisfied by a cross-repo pointer. Confirm granularity.
+  - id: node_stub_priority
+    detail: Node stub treated as present-trivial / low-priority SAST. Confirm.
+  - id: llm_data_fixtures
+    detail: tests/fixtures/llm_data/ classified as unit-test scaffolding (no scoring ground-truth). Confirm.
+
+phase_0_5_signoff:
+  mechanism: >-
+    Human writes the hex sha256 of THIS file into audit/scope.approved. The
+    Phase-1 scaffolder (and audit verify) recompute sha256(scope.yaml) and
+    refuse to proceed unless it matches.
+  binds: [required_instruments, conditional_instruments, scanner_command_config_policy, required_policy_version]
+  rescope_triggers_resignoff: true

@@ -1,0 +1,45 @@
+rules:
+  - id: harbor-reward-read-outside-verifier
+    languages: [python]
+    severity: ERROR
+    message: >-
+      Reward/score is read from a CSV/JSON artifact instead of recomputed from
+      raw trial events. Pass-rate-from-CSV-not-raw-trials is a domain-integrity
+      defect (CRUCIBLE §1.5 rollout_integrity).
+    patterns:
+      - pattern-either:
+          - pattern: $X = pd.read_csv(...).$COL.mean()
+          - pattern: $X = json.load(...)["pass_rate"]
+    metadata:
+      cwe: ["CWE-345: Insufficient Verification of Data Authenticity"]
+      crucible_class: rollout_miscount
+
+  - id: harbor-missing-reward-defaults-pass
+    languages: [python]
+    severity: ERROR
+    message: >-
+      A missing/None reward defaults to success/pass. Missing reward must fail
+      closed, never default to pass (CRUCIBLE §1.5 reward_provenance).
+    patterns:
+      - pattern-either:
+          - pattern: $R = $REWARD or 1.0
+          - pattern: |
+              if $REWARD is None:
+                  $REWARD = 1.0
+    metadata:
+      cwe: ["CWE-636: Not Failing Securely"]
+      crucible_class: agent_writable_reward
+
+  - id: harbor-agent-path-reward-write
+    languages: [python]
+    severity: ERROR
+    message: >-
+      Reward path appears writable from an agent-controlled directory. The agent
+      UID must not be able to write the reward (CRUCIBLE §1.5).
+    patterns:
+      - pattern-either:
+          - pattern: open($AGENT_DIR + "/reward.json", "w")
+          - pattern: open($AGENT_DIR + "/score.json", "w")
+    metadata:
+      cwe: ["CWE-732: Incorrect Permission Assignment for Critical Resource"]
+      crucible_class: agent_writable_reward

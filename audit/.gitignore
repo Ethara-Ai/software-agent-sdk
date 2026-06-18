@@ -1,0 +1,10 @@
+# Raw per-command transcripts are volatile, machine-specific, regenerated output.
+# The committed evidence bundle (audit/evidence.yaml) carries run_ids, exit codes,
+# and stdout excerpts; reproducibility comes from pinned inputs + the §1.10 manifest.
+results/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

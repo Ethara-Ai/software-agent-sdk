@@ -1,0 +1,69 @@
+[project]
+name = "crucible-audit"
+version = "0.2.0"
+description = "CRUCIBLE adversarial audit gate for OpenHands/software-agent-sdk"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "typer>=0.12.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.7",
+]
+
+# Scanners installed into the audit venv via `uv sync --extra scanners`.
+# Native binaries (osv-scanner, gitleaks, hadolint, trivy) are installed by
+# `audit provision` outside pip and recorded as tool_blocked when unavailable.
+[project.optional-dependencies]
+scanners = [
+    "bandit>=1.7.9",
+    "semgrep>=1.86.0",
+    "pip-audit>=2.7.3",
+]
+dev = [
+    "pytest>=8.0",
+    "hypothesis>=6.100",
+    "ruff>=0.6.0",
+]
+
+[project.scripts]
+audit = "audit:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Flat-module layout: every harness module sits at audit/ root and imports its
+# siblings by bare name (`from models import ...`). The wheel ships them all.
+[tool.hatch.build.targets.wheel]
+include = [
+    "audit.py",
+    "models.py",
+    "recon.py",
+    "tools.py",
+    "policy.py",
+    "normalize.py",
+    "domain.py",
+    "cvss.py",
+    "recall.py",
+    "verifier.py",
+]
+
+[tool.pytest.ini_options]
+# Put the flat modules on sys.path so `from models import ...` resolves in tests.
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# UP042: enums intentionally inherit (str, Enum) for custom ordering + broad
+#        JSON/pydantic compat (StrEnum changes str() semantics on 3.12).
+# B008:  typer.Option(...) in defaults is the idiomatic Typer pattern.
+ignore = ["UP042"]
+
+[tool.ruff.lint.per-file-ignores]
+"audit.py" = ["B008"]
