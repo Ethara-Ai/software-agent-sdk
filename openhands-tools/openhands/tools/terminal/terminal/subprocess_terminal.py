@@ -205,7 +205,10 @@ class SubprocessTerminal(TerminalInterface):
             self._pty_master_fd = None
 
             if self.reader_thread and self.reader_thread.is_alive():
-                self.reader_thread.join(timeout=1)
+                try:
+                    self.reader_thread.join(timeout=1)
+                except Exception:
+                    pass
 
             self.process = None
             self._closed: bool = True

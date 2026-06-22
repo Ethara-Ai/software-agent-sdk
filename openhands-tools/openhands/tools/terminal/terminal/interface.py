@@ -1,6 +1,8 @@
 """Abstract interface for terminal backends."""
 
+import atexit
 import os
+import weakref
 from abc import ABC, abstractmethod
 
 from openhands.tools.terminal.constants import (
@@ -10,6 +12,23 @@ from openhands.tools.terminal.definition import (
     TerminalAction,
     TerminalObservation,
 )
+
+
+_active_sessions: set[weakref.ref] = set()
+
+
+def _cleanup_sessions() -> None:
+    for ref in list(_active_sessions):
+        session = ref()
+        if session is not None:
+            try:
+                session.close()
+            except Exception:
+                pass
+    _active_sessions.clear()
+
+
+atexit.register(_cleanup_sessions)
 
 
 class TerminalInterface(ABC):
@@ -160,6 +179,7 @@ class TerminalSessionBase(ABC):
         self._initialized = False
         self._closed = False
         self._cwd = os.path.abspath(work_dir)
+        _active_sessions.add(weakref.ref(self, _active_sessions.discard))
 
     @abstractmethod
     def initialize(self) -> None:
@@ -221,9 +241,9 @@ class TerminalSessionBase(ABC):
         return self._cwd
 
     def __del__(self) -> None:
-        """Ensure the session is closed when the object is destroyed."""
         try:
             self.close()
-        except ImportError:
-            # Python is shutting down, let the OS handle cleanup
+        except Exception:
+            # Best-effort cleanup; during interpreter shutdown close() may raise
+            # (e.g. PythonFinalizationError from Thread.join). Swallow it.
             pass
