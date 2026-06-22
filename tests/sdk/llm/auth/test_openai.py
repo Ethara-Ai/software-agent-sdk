@@ -27,7 +27,7 @@ from openhands.sdk.llm.auth.openai import (
 
 
 def test_generate_pkce():
-    """Test PKCE code generation using authlib."""
+    """Test PKCE code generation using joserfc/stdlib."""
     verifier, challenge = _generate_pkce()
     assert verifier is not None
     assert challenge is not None

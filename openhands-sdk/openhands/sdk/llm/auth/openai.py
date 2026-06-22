@@ -4,13 +4,16 @@ This module implements OAuth PKCE flow for authenticating with OpenAI's ChatGPT
 service, allowing users with ChatGPT Plus/Pro subscriptions to use Codex models
 without consuming API credits.
 
-Uses authlib for OAuth handling and aiohttp for the callback server.
+Uses joserfc for JWT verification and aiohttp for the callback server.
 """
 
 from __future__ import annotations
 
 import asyncio
+import base64
+import hashlib
 import platform
+import secrets
 import sys
 import threading
 import time
@@ -20,11 +23,11 @@ from typing import TYPE_CHECKING, Any, Literal
 from urllib.parse import urlencode
 
 from aiohttp import web
-from authlib.common.security import generate_token
-from authlib.jose import JsonWebKey, jwt
-from authlib.jose.errors import JoseError
-from authlib.oauth2.rfc7636 import create_s256_code_challenge
 from httpx import AsyncClient, Client
+from joserfc import jwt
+from joserfc.errors import JoseError
+from joserfc.jwk import KeySet
+from joserfc.jwt import JWTClaimsRegistry
 
 from openhands.sdk.llm.auth.credentials import (
     CredentialStore,
@@ -141,7 +144,9 @@ class _JWKSCache:
     """Thread-safe cache for OpenAI's JWKS (JSON Web Key Set)."""
 
     def __init__(self) -> None:
-        self._keys: dict[str, Any] = {}
+        # Raw JWKS JSON from OpenAI; shape is validated by
+        # KeySet.import_key_set, so it's typed Any here.
+        self._keys: Any = {}
         self._fetched_at: float = 0
         self._lock = threading.Lock()
 
@@ -158,7 +163,7 @@ class _JWKSCache:
             now = time.time()
             if not self._keys or (now - self._fetched_at) > JWKS_CACHE_TTL_SECONDS:
                 self._fetch_jwks()
-            return JsonWebKey.import_key_set(self._keys)
+            return KeySet.import_key_set(self._keys)
 
     def _fetch_jwks(self) -> None:
         """Fetch JWKS from OpenAI's well-known endpoint."""
@@ -185,9 +190,10 @@ _jwks_cache = _JWKSCache()
 
 
 def _generate_pkce() -> tuple[str, str]:
-    """Generate PKCE verifier and challenge using authlib."""
-    verifier = generate_token(43)
-    challenge = create_s256_code_challenge(verifier)
+    """Generate PKCE verifier and S256 challenge (RFC 7636)."""
+    verifier = secrets.token_urlsafe(43)
+    digest = hashlib.sha256(verifier.encode("ascii")).digest()
+    challenge = base64.urlsafe_b64encode(digest).rstrip(b"=").decode("ascii")
     return verifier, challenge
 
 
@@ -205,12 +211,16 @@ def _extract_chatgpt_account_id(access_token: str) -> str | None:
         The chatgpt_account_id if found and signature is valid, None otherwise
     """
     try:
-        # Fetch JWKS and verify JWT signature
+        # Fetch JWKS and verify JWT signature (verification is automatic)
         key_set = _jwks_cache.get_key_set()
-        claims = jwt.decode(access_token, key_set)
+        token = jwt.decode(access_token, key_set)
+        claims = token.claims
 
-        # Validate standard claims (issuer)
-        claims.validate()
+        # Validate standard claims: if an issuer is present it must match
+        # OpenAI's auth endpoint, but absence is tolerated for parity with
+        # the previous authlib behavior.
+        claims_registry = JWTClaimsRegistry(iss={"essential": False, "value": ISSUER})
+        claims_registry.validate(claims)
 
         # Extract account ID from nested structure
         auth_info = claims.get("https://api.openai.com/auth", {})
@@ -413,7 +423,7 @@ class OpenAISubscriptionAuth:
             RuntimeError: If the OAuth flow fails or times out.
         """
         code_verifier, code_challenge = _generate_pkce()
-        state = generate_token(32)
+        state = secrets.token_urlsafe(32)
         redirect_uri = f"http://localhost:{self._oauth_port}/auth/callback"
         auth_url = _build_authorize_url(redirect_uri, code_challenge, state)
 
