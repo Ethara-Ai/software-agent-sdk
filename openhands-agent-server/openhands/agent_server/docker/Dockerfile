@@ -244,7 +244,33 @@ FROM base-image-minimal AS source-minimal
 ARG USERNAME
 ENV UV_PYTHON_INSTALL_DIR=/agent-server/uv-managed-python
 COPY --chown=${USERNAME}:${USERNAME} --from=builder /agent-server /agent-server
-ENTRYPOINT ["/agent-server/.venv/bin/python", "-m", "openhands.agent_server"]
+
+# Anti-reward-hacking egress filter (mitmproxy) — source-minimal only.
+USER root
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends python3-pip libffi-dev libssl-dev; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*
+RUN set -eux; \
+    uv venv --python 3.12 /opt/mitmproxy-venv; \
+    uv pip install --python /opt/mitmproxy-venv/bin/python --no-cache mitmproxy; \
+    ln -sf /opt/mitmproxy-venv/bin/mitmdump /usr/local/bin/mitmdump
+# FAIL HARD if mitmproxy CA cannot be generated; never ship an image without the filter.
+RUN set -eux; \
+    mkdir -p /etc/mitmproxy; \
+    (timeout 5 mitmdump --listen-port 9999 --set confdir=/etc/mitmproxy >/dev/null 2>&1 || true); \
+    test -f /etc/mitmproxy/mitmproxy-ca-cert.pem; \
+    cp /etc/mitmproxy/mitmproxy-ca-cert.pem /usr/local/share/ca-certificates/mitmproxy.crt; \
+    update-ca-certificates; \
+    chmod -R o+rx /etc/mitmproxy
+COPY openhands-agent-server/openhands/agent_server/docker/egress-filter.py /usr/local/bin/egress-filter.py
+COPY openhands-agent-server/openhands/agent_server/docker/entrypoint-with-egress-filter.sh /usr/local/bin/entrypoint-with-egress-filter.sh
+RUN chmod +x /usr/local/bin/entrypoint-with-egress-filter.sh
+# Vector-C: delete gold patches from the agent image as root at build time.
+RUN rm -f /home/fix.patch /home/test.patch
+USER ${USERNAME}
+ENTRYPOINT ["/usr/local/bin/entrypoint-with-egress-filter.sh"]
 
 ############################
 # Target B: binary-runtime
