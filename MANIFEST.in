@@ -39,6 +39,7 @@ recursive-include openhands-agent-server py.typed
 
 # Docker build files
 include openhands-agent-server/openhands/agent_server/docker/Dockerfile
+include openhands-agent-server/openhands/agent_server/docker/entrypoint-with-egress-filter.sh
 include openhands-agent-server/openhands/agent_server/docker/wallpaper.svg
 
 # PyInstaller spec
