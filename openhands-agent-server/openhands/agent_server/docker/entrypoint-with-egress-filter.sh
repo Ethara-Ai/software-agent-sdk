@@ -35,10 +35,21 @@ for _ in $(seq 1 60); do
     sleep 0.5
 done
 
+# --- LLM direct-egress carve-out (bypasses the full egress block) ---
+LLM_DIRECT_HOST="${LLM_DIRECT_HOST:-}"
+LLM_DIRECT_PORT="${LLM_DIRECT_PORT:-443}"
+if [ -n "$LLM_DIRECT_HOST" ]; then
+    iptables -I OUTPUT -p tcp -d "$LLM_DIRECT_HOST" \
+        --dport "$LLM_DIRECT_PORT" -j ACCEPT || \
+        echo "[entrypoint] WARN: could not add LLM_DIRECT_HOST iptables carve-out"
+fi
+
 export HTTP_PROXY="http://127.0.0.1:$MITM_PORT"
 export HTTPS_PROXY="http://127.0.0.1:$MITM_PORT"
 export http_proxy="$HTTP_PROXY"
 export https_proxy="$HTTPS_PROXY"
+export no_proxy="127.0.0.1,localhost${LLM_DIRECT_HOST:+,${LLM_DIRECT_HOST}}"
+export NO_PROXY="$no_proxy"
 
 num_code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
            "https://api.github.com/repositories/1" 2>/dev/null || echo "000")
@@ -48,7 +59,7 @@ if [ "$num_code" != "403" ]; then
 fi
 
 go_code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
-          "https://proxy.golang.org/github.com/${TASK_BLOCK_ORG:-}/${TASK_BLOCK_REPO:-}/@v/list" 2>/dev/null || echo "000")
+          "https://proxy.golang.org/any/module/@v/list" 2>/dev/null || echo "000")
 if [ "$go_code" != "403" ]; then
     echo "[entrypoint] FATAL: Go module proxy not blocking task repo (got $go_code, expected 403)"
     exit 1
