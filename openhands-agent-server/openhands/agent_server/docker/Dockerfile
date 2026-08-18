@@ -267,6 +267,13 @@ RUN set -eux; \
 COPY openhands-agent-server/openhands/agent_server/docker/egress-filter.py /usr/local/bin/egress-filter.py
 COPY openhands-agent-server/openhands/agent_server/docker/entrypoint-with-egress-filter.sh /usr/local/bin/entrypoint-with-egress-filter.sh
 RUN chmod +x /usr/local/bin/entrypoint-with-egress-filter.sh
+# The egress filter blocks LiteLLM's startup fetch of the model cost map, so
+# models newer than the copy bundled in the wheel are unknown at runtime and
+# LiteLLM drops parameters it thinks they lack -- notably `thinking`, which
+# silently strips reasoning from every trajectory. Top the map up at build time.
+COPY openhands-agent-server/openhands/agent_server/docker/litellm-model-map-patch.py /usr/local/bin/litellm-model-map-patch.py
+RUN /agent-server/.venv/bin/python /usr/local/bin/litellm-model-map-patch.py
+ENV LITELLM_LOCAL_MODEL_COST_MAP=true
 # Vector-C: delete gold patches from the agent image as root at build time.
 RUN rm -f /home/fix.patch /home/test.patch
 USER ${USERNAME}
