@@ -75,6 +75,7 @@ REASONING_EFFORT_MODELS: list[str] = [
     "claude-opus-4-6",
     "claude-opus-4-7",
     "claude-opus-4-8",
+    "claude-opus-5",
     "claude-sonnet-4-6",
     # Nova 2 Lite
     "nova-2-lite",
@@ -96,6 +97,7 @@ EXTENDED_THINKING_MODELS: list[str] = [
 ADAPTIVE_THINKING_MODELS: list[str] = [
     "claude-opus-4-7",
     "claude-opus-4-8",
+    "claude-opus-5",
     "claude-fable-5",
 ]
 
@@ -116,6 +118,7 @@ PROMPT_CACHE_MODELS: list[str] = [
     "claude-opus-4-6",
     "claude-opus-4-7",
     "claude-opus-4-8",
+    "claude-opus-5",
     "claude-sonnet-4-6",
 ]
 

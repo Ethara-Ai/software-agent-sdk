@@ -15,7 +15,12 @@ import json
 import pathlib
 from importlib.resources import files
 
-MODELS = ("claude-opus-4-8", "anthropic/claude-opus-4-8")
+MODELS = (
+    "claude-opus-4-8",
+    "anthropic/claude-opus-4-8",
+    "claude-opus-5",
+    "anthropic/claude-opus-5",
+)
 
 path = pathlib.Path(
     str(files("litellm").joinpath("model_prices_and_context_window_backup.json"))
